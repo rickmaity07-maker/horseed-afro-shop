@@ -1,6 +1,6 @@
 # Architecture
 
-How the Al-Madina shop is built and the rules the code follows. Setup and day-to-day use: [README](../README.md) and
+How the Horseed Afro Shop (built on the Al-Madina shop's code) is put together and the rules the code follows. Setup and day-to-day use: [README](../README.md) and
 [SETUP.md](../SETUP.md).
 
 ## The pieces

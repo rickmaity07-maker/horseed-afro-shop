@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test("homepage loads with German as the default language", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "de");
-  await expect(page.getByText("Ihr arabischer & türkischer Markt,")).toBeVisible();
+  await expect(page.getByText("Alles von zu Hause,")).toBeVisible();
   // .first(): a "Top rated" / "Recently viewed" grid can follow the main catalog grid.
   await expect(page.locator(".product-grid").first()).toBeVisible({ timeout: 15_000 });
 });
@@ -11,7 +11,7 @@ test("homepage loads with German as the default language", async ({ page }) => {
 test("language toggle switches to English and persists across navigation", async ({ page }) => {
   await page.goto("/");
   await page.locator(".language-btn").click();
-  await expect(page.getByText("Your Arabic & Turkish market,")).toBeVisible();
+  await expect(page.getByText("Everything from home,")).toBeVisible();
 
   // Persistence is via a shared context + localStorage, not per-page state —
   // this is what "translate everything" actually required.
@@ -24,7 +24,7 @@ test("language toggle switches to English and persists across navigation", async
 // creates and deletes its own product concurrently, and a "first()" locator could
 // land on it just before it is deleted. This product belongs to the "Reis" category,
 // which is sorted first, so it is always on the first page of the grid.
-export const STABLE_PRODUCT_TEXT = "Durra Indischer Basmati-Reis Sella XXL";
+export const STABLE_PRODUCT_TEXT = "Basmatireis";
 
 test("add to cart updates the cart badge and drawer", async ({ page }) => {
   await page.goto("/");

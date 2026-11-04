@@ -74,9 +74,9 @@ test("search: opens from hamburger, closes hamburger, filters, and self-closes",
   // Product catalog data (names/descriptions) is stored in English regardless
   // of UI language — only static chrome text is translated — so search terms
   // here must match actual catalog content, not the German UI strings.
-  await searchInput.fill("Coffee");
+  await searchInput.fill("Xawaash");
   // Filtering is live — the grid should narrow to matches as you type.
-  await expect(page.locator(".product-grid").first()).toContainText(/Coffee/i);
+  await expect(page.locator(".product-grid").first()).toContainText(/Xawaash/i);
 
   await searchInput.press("Enter");
   await expect(page.locator(".mobile-search")).toBeHidden();

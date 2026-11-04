@@ -142,7 +142,7 @@ keep it secret and use it as a fallback only.
 
 ## 7. Store details
 
-Address, phone, Plus Code, Arabic name, services and opening hours live in one
+Address, owner, phone, services and opening hours (from the shop sign) live in one
 file: **`lib/store-info.ts`**. The shop page, packing slips, emails and Google
 structured data all read from it. Change hours there (e.g. for Ramadan).
 

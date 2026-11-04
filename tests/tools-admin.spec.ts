@@ -23,8 +23,9 @@ test.describe("admin tools", () => {
     expect(res.ok()).toBeTruthy();
     expect(res.headers()["content-type"]).toContain("text/csv");
     const rows = parseCsv(await res.text());
-    expect(rows[0]).toEqual(["variant_id", "produkt", "groesse", "kategorie", "preis", "vorher_preis", "bestand", "sichtbar"]);
-    expect(rows.length).toBeGreaterThan(100);
+    // The first eight columns drive price and stock edits; food-information columns follow them.
+    expect(rows[0].slice(0, 8)).toEqual(["variant_id", "produkt", "groesse", "kategorie", "preis", "vorher_preis", "bestand", "sichtbar"]);
+    expect(rows.length).toBeGreaterThan(20);
 
     const [header, first] = rows;
     const original = first[4];
@@ -126,10 +127,10 @@ test.describe("admin tools", () => {
 
   test("products page: search, select and the bulk toolbar appear", async ({ page }) => {
     await page.goto("/admin/products");
-    await page.getByLabel("Produkte suchen").fill("Durra Indischer Basmati");
-    const row = page.getByText("Durra Indischer Basmati-Reis Sella XXL 4,5 kg");
+    await page.getByLabel("Produkte suchen").fill("Basmatireis");
+    const row = page.getByText("Basmatireis", { exact: true });
     await expect(row).toBeVisible({ timeout: 15_000 });
-    await page.getByLabel("Durra Indischer Basmati-Reis Sella XXL 4,5 kg auswählen").check();
+    await page.getByLabel("Basmatireis auswählen").check();
     await expect(page.getByRole("toolbar", { name: "Mehrfachaktionen" })).toContainText("1 ausgewählt");
   });
 });

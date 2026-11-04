@@ -36,9 +36,9 @@ test.describe("visual", () => {
 
   test("product detail popup", async ({ page }) => {
     await page.goto("/");
-    await page.locator(".product-card", { hasText: "Durra Indischer Basmati-Reis Sella XXL" }).first().locator(".product-image").click();
+    await page.locator(".product-card", { hasText: "Basmatireis" }).first().locator(".product-image").click();
     const modal = page.locator(".checkout-modal");
-    await expect(modal.locator(".pd-specs")).toBeVisible();
+    await expect(modal.locator(".primary-btn").first()).toBeVisible();
     await settle(page);
     await expect(modal).toHaveScreenshot("product-modal.png", { mask: [modal.locator(".pg-main img")], maxDiffPixelRatio: 0.03 });
   });

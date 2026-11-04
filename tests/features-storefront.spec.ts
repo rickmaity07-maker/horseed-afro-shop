@@ -1,17 +1,17 @@
 import { test, expect } from "@playwright/test";
 import { deleteUserByEmail } from "./helpers/test-customer";
 
-test("visit section shows the real store details from the Google listing", async ({ page }) => {
+test("visit section shows the real store details from the shop sign", async ({ page }) => {
   await page.goto("/");
   const visit = page.locator("#visit");
-  await expect(visit.getByText("سوبر ماركت وملحمة المدينة")).toBeVisible();
   await expect(visit.getByText("Schultesstraße 4").first()).toBeVisible();
-  await expect(visit.getByText(/26QC\+WJ/)).toBeVisible();
-  await expect(visit.getByText("Abholung am Straßenrand")).toBeVisible();
-  // Mon–Sat 07–20, Sunday closed — one row per weekday.
-  await expect(visit.locator(".hours span", { hasText: "Montag" })).toContainText("07:00 — 20:00");
+  await expect(visit.getByText("97421 Schweinfurt", { exact: false }).first()).toBeVisible();
+  await expect(visit.getByText("Abholung im Laden")).toBeVisible();
+  // Mon–Sat 09–20, Sundays and public holidays closed (shop sign) — one row per weekday.
+  await expect(visit.locator(".hours span", { hasText: "Montag" })).toContainText("09:00 — 20:00");
   await expect(visit.locator(".hours span", { hasText: "Sonntag" })).toContainText("Geschlossen");
-  await expect(visit.locator('a[href="tel:+491638707437"]')).toBeVisible();
+  await expect(visit.locator(".hours span", { hasText: "Feiertage" })).toContainText("Geschlossen");
+  await expect(visit.locator('a[href="tel:+4915209442155"]')).toBeVisible();
 });
 
 test("robots.txt keeps private areas out and points at the sitemap", async ({ request }) => {
@@ -96,7 +96,7 @@ test("cart drawer shows free-delivery progress", async ({ page }) => {
   const store = await (await page.request.get("/api/store")).json();
   test.skip(!(store.settings.deliveryEnabled && store.settings.freeDeliveryThreshold > 0), "free delivery disabled in settings");
 
-  await page.locator(".product-card", { hasText: "Durra Indischer Basmati-Reis Sella XXL" }).first().locator(".add-btn").click();
+  await page.locator(".product-card", { hasText: "Basmatireis" }).first().locator(".add-btn").click();
   await expect(page.locator(".cart-btn i")).toHaveText("1");
   await page.locator(".cart-btn").click();
   await expect(page.locator(".free-delivery .progress")).toBeVisible();

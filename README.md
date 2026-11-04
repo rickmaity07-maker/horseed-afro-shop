@@ -1,10 +1,18 @@
 # Horseed Afro Shop — online shop
 
-Online shop and admin portal for **Horseed Afro Shop** (سوبر ماركت وملحمة المدينة),
-an Arabic/Turkish supermarket and halal butcher at Schultesstraße 4, 97421 Schweinfurt.
+Online shop and admin portal for **Horseed Afro Shop** (owner: Said Mahamud), Schultesstraße 4,
+97421 Schweinfurt: groceries, household goods, clothes & suits and cosmetics, as on the shop sign.
+Open Mon–Sat 9:00–20:00; closed on Sundays and public holidays.
+
+Built on the Al-Madina Markt shop (same architecture, admin and tests), restyled after the Horseed sign:
+espresso and sand colours, a sun-orange accent, Montserrat capitals and the camel-in-sun logo.
 
 Next.js 15 (App Router) · React 19 · Tailwind CSS 4 · Postgres (Neon) via Prisma raw SQL · Nodemailer.
 Payment is **cash only**, on delivery or pickup — there is no payment gateway.
+
+**Before going live**, fill in what the sign doesn't show: the public contact email and VAT ID in
+`app/impressum/page.tsx` and `SMTP_FROM`/`STORE_NOTIFICATION_EMAIL` in the environment. The starter
+catalogue (`npm run db:seed`) has placeholder prices and stock for the owner to correct in `/admin/products`.
 
 ## Features
 
@@ -16,8 +24,9 @@ Payment is **cash only**, on delivery or pickup — there is no payment gateway.
 - Customer accounts: email verification, password reset, profile and password change, saved addresses,
   wishlist, order history with status timeline, reorder, self-service cancellation of new orders
 - Order tracking without login (`/track`), delivery-driver confirmation link (`/deliver/[token]`)
-- Store details from the Google listing: hours with a live "open now" badge, services, Plus Code, directions
-- Impressum, Datenschutz, cookie notice; `robots.txt`, `sitemap.xml`, Product and GroceryStore JSON-LD
+- Store details from the shop sign (`lib/store-info.ts`): hours with a live "open now" badge, services, directions
+- Clothing sizes (S–XXL, suit sizes) as product variants, each with its own stock
+- Impressum, Datenschutz, cookie notice; `robots.txt`, `sitemap.xml`, Product and Store JSON-LD
 
 **Admin portal** (`/admin`, Owner and Staff roles)
 - Orders: live updates with sound, search, date range, status tabs, cancel (restocks automatically),
