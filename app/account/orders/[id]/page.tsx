@@ -71,7 +71,7 @@ export default function AccountOrderDetailPage() {
             {(order.status === "OUT_FOR_DELIVERY" || order.status === "DELIVERED") && (
               <p style={{ marginTop: 20, fontSize: 13, color: "rgba(24,32,27,.6)" }}>
                 {t("Sie möchten vom Kauf zurücktreten? ", "Want to withdraw from this purchase? ")}
-                <Link href={`/widerruf?order=${encodeURIComponent(order.orderNumber)}`} style={{ color: "#a12e3d", fontWeight: 700, textDecoration: "underline" }}>
+                <Link href={`/widerruf?order=${encodeURIComponent(order.orderNumber)}`} style={{ color: "#3b2318", fontWeight: 700, textDecoration: "underline" }}>
                   {t("Vertrag widerrufen", "Withdraw from contract")}
                 </Link>
               </p>

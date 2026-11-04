@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { sizedImage } from "@/lib/images";
+import { PLACEHOLDER_IMAGE, sizedImage } from "@/lib/images";
 
 const STORED = "https://res.cloudinary.com/a2x0mlwu/image/upload/f_auto,q_auto/v1792521535/almadina/products/durra.webp";
 
@@ -23,10 +23,11 @@ describe("sizedImage", () => {
     expect(sizedImage(other, 600)).toBe(other);
   });
 
-  it("leaves local and other URLs unchanged, and handles empty values", () => {
+  it("leaves local and other URLs unchanged, and shows the placeholder for products without a photo", () => {
     expect(sizedImage("/logo.png", 600)).toBe("/logo.png");
-    expect(sizedImage(null, 600)).toBe("");
-    expect(sizedImage(undefined, 600)).toBe("");
+    expect(sizedImage(null, 600)).toBe(PLACEHOLDER_IMAGE);
+    expect(sizedImage(undefined, 600)).toBe(PLACEHOLDER_IMAGE);
+    expect(sizedImage("", 600)).toBe(PLACEHOLDER_IMAGE);
   });
 
   it("passes every URL through unchanged when no Cloudinary account is configured", () => {

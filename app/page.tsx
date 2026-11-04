@@ -79,7 +79,7 @@ export default function Home() {
   useEffect(() => {
     // Remove the list older versions of the site saved on the device.
     try {
-      localStorage.removeItem("almadina_recently_viewed");
+      localStorage.removeItem("horseed_recently_viewed");
     } catch {
       /* ignore */
     }

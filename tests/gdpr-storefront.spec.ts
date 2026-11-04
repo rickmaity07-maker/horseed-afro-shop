@@ -31,7 +31,7 @@ test("nothing optional is stored on the device (only language + cookie-notice ch
   await page.locator(".product-grid .product-card .product-image").first().click();
   await page.locator(".close-modal").click();
   const keys = await page.evaluate(() => Object.keys(localStorage));
-  expect(keys.filter((k) => !["almadina_language", "almadina_cookie_notice_ack"].includes(k))).toEqual([]);
+  expect(keys.filter((k) => !["horseed_language", "horseed_cookie_notice_ack"].includes(k))).toEqual([]);
 });
 
 test("checkout and sign-up show a privacy notice with a link to the policy", async ({ page }) => {

@@ -25,10 +25,10 @@ Needs the PostgreSQL client tools (`pg_dump`, `pg_restore`). Use **direct** (non
 
 ```bash
 # 1. Dump the current database (reads DIRECT_URL from .env, or set SOURCE_DATABASE_URL)
-npm run db:transfer -- dump al-madina.dump
+npm run db:transfer -- dump horseed.dump
 
 # 2. Restore into the owner's new, empty Neon database
-TARGET_DATABASE_URL="postgresql://…new direct string…" npm run db:transfer -- restore al-madina.dump
+TARGET_DATABASE_URL="postgresql://…new direct string…" npm run db:transfer -- restore horseed.dump
 
 # 3. Point .env (or Vercel) at the new database, then make sure the schema is current
 npm run db:migrate

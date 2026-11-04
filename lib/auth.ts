@@ -4,7 +4,7 @@ import { prisma } from "./prisma";
 import { getCustomerSession } from "./customer-auth";
 import { signToken, verifyToken } from "./tokens";
 
-const COOKIE_NAME = "almadina_admin_session";
+const COOKIE_NAME = "horseed_admin_session";
 
 type AdminRole = "OWNER" | "STAFF";
 

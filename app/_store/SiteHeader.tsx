@@ -58,8 +58,8 @@ export function SiteHeader({ settings, account, cartCount, query, onQueryChange,
           <a href="#top" className="header-logo group nav-left" title={t("Zur Startseite", "Home")}>
             <img src="/logo.png" alt="" className="logo-image" />
             <span className="header-logo-text">
-              <b>al-madina</b>
-              <small>market · seit 1998</small>
+              <b>Horseed</b>
+              <small>Afro Shop</small>
             </span>
           </a>
 
@@ -92,7 +92,7 @@ export function SiteHeader({ settings, account, cartCount, query, onQueryChange,
               <button onClick={() => setLanguage(otherLanguage)} className="language-btn" title={t("Sprache wechseln", "Change language")} lang={language === "de" ? "en" : "de"}>
                 {language === "de" ? "English" : "Deutsch"}
               </button>
-              <a className="icon-btn hidden sm:flex" href={PHONE_LINK} aria-label={t("Al-Madina anrufen", "Call Al-Madina")}>
+              <a className="icon-btn hidden sm:flex" href={PHONE_LINK} aria-label={t("Horseed anrufen", "Call Horseed")}>
                 <Phone size={19} />
               </a>
               <a className="icon-btn" href="/track" aria-label={t("Bestellung verfolgen", "Track order")} title={t("Bestellung verfolgen", "Track order")}>
@@ -119,7 +119,7 @@ export function SiteHeader({ settings, account, cartCount, query, onQueryChange,
           <aside className="mobile-nav-panel" onClick={(e) => e.stopPropagation()}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
               <span className="header-logo-text">
-                <b style={{ fontSize: 18 }}>al-madina</b>
+                <b style={{ fontSize: 18 }}>Horseed</b>
               </span>
               <button onClick={closeNav} className="icon-btn" aria-label={t("Menü schließen", "Close menu")}>
                 <X size={18} />

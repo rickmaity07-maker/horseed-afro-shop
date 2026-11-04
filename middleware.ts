@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/lib/tokens";
 
 // Keep these in sync with ADMIN_COOKIE_NAME / CUSTOMER_COOKIE_NAME in lib/auth.ts / lib/customer-auth.ts
-const ADMIN_COOKIE_NAME = "almadina_admin_session";
-const CUSTOMER_COOKIE_NAME = "almadina_customer_session";
+const ADMIN_COOKIE_NAME = "horseed_admin_session";
+const CUSTOMER_COOKIE_NAME = "horseed_customer_session";
 
 const OWNER_ONLY_PREFIXES = [
   "/admin/products",

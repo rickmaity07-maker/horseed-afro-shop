@@ -1,4 +1,4 @@
-# Al-Madina Markt — Setup Guide
+# Horseed Afro Shop — Setup Guide
 
 Full-stack Next.js shop: storefront, customer accounts, admin portal, Postgres
 database and email notifications. Payment is **cash only** (on delivery or
@@ -21,7 +21,7 @@ Fill in `.env`:
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASSWORD`, `SMTP_FROM` | Outgoing email (see section 4). |
 | `STORE_NOTIFICATION_EMAIL` | The shop's inbox — new-order and low-stock alerts go here. |
 | `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` | Product photo storage. The cloud name also drives the `/img` proxy, so rebuild after changing it. |
-| `NEXT_PUBLIC_SITE_URL` | Public URL once deployed (e.g. `https://al-madina-markt.de`). Used in email links, the sitemap and structured data. |
+| `NEXT_PUBLIC_SITE_URL` | Public URL once deployed (e.g. `https://horseed-afroshop.de`). Used in email links, the sitemap and structured data. |
 
 ## 2. Database
 
@@ -170,7 +170,7 @@ Runs on any Node.js host (VPS, Railway, Render) or Vercel. Notes:
   ```nginx
   server {
       listen 443 ssl http2;
-      server_name al-madina-markt.de;
+      server_name horseed-afroshop.de;
       # ssl_certificate / ssl_certificate_key from certbot
 
       location / {
@@ -185,7 +185,7 @@ Runs on any Node.js host (VPS, Railway, Render) or Vercel. Notes:
       }
   }
   ```
-  Caddy does all of this (and HTTPS) with: `al-madina-markt.de { reverse_proxy 127.0.0.1:3000 }`
+  Caddy does all of this (and HTTPS) with: `horseed-afroshop.de { reverse_proxy 127.0.0.1:3000 }`
   — it sets `X-Forwarded-For` itself; add `header_up X-Real-IP {remote_host}` inside
   `reverse_proxy { }`.
 - Security headers: a strict Content-Security-Policy with a fresh script nonce

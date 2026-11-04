@@ -85,11 +85,11 @@ export default function TeamPage() {
             <option value="STAFF">{t("Mitarbeiter", "Staff")}</option>
             <option value="OWNER">{t("Inhaber", "Owner")}</option>
           </select>
-          <button disabled={submitting} className="bg-[#a12e3d] text-white rounded-lg px-4 py-2 text-sm font-medium">
+          <button disabled={submitting} className="bg-[#3b2318] text-white rounded-lg px-4 py-2 text-sm font-medium">
             {submitting ? t("Wird hinzugefügt…", "Adding…") : t("Hinzufügen", "Add")}
           </button>
         </form>
-        {error && <div className="text-sm text-[#a12e3d] mt-2">{error}</div>}
+        {error && <div className="text-sm text-[#3b2318] mt-2">{error}</div>}
       </div>
 
       <div className="bg-white rounded-xl border border-black/5">
@@ -112,12 +112,12 @@ export default function TeamPage() {
                     <td className="py-3 px-5">{a.name}</td>
                     <td className="py-3 px-5">{a.email}</td>
                     <td className="py-3 px-5">
-                      <span className={`text-[10px] uppercase tracking-wider rounded-full px-2 py-0.5 ${a.role === "OWNER" ? "bg-[#a12e3d]/10 text-[#a12e3d]" : "bg-black/5 text-black/50"}`}>
+                      <span className={`text-[10px] uppercase tracking-wider rounded-full px-2 py-0.5 ${a.role === "OWNER" ? "bg-[#3b2318]/10 text-[#3b2318]" : "bg-black/5 text-black/50"}`}>
                         {a.role}
                       </span>
                     </td>
                     <td className="py-3 px-5 text-right">
-                      <button onClick={() => removeAccount(a.id)} className="text-black/40 hover:text-[#a12e3d]" aria-label={t("Entfernen", "Remove")}>
+                      <button onClick={() => removeAccount(a.id)} className="text-black/40 hover:text-[#3b2318]" aria-label={t("Entfernen", "Remove")}>
                         <Trash2 size={15} />
                       </button>
                     </td>

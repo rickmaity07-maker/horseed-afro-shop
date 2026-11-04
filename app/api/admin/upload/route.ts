@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
   if (!TYPES.includes(file.type)) return NextResponse.json({ error: "Nur JPG, PNG, WebP oder HEIC." }, { status: 400 });
   if (file.size > MAX_BYTES) return NextResponse.json({ error: "Das Bild ist größer als 10 MB." }, { status: 400 });
 
-  const folder = "almadina/products";
+  const folder = "horseed/products";
   const timestamp = Math.floor(Date.now() / 1000);
   // Cloudinary signature: sha1 of the signed params in alphabetical order, followed by the API secret.
   const signature = createHash("sha1").update(`folder=${folder}&timestamp=${timestamp}${secret}`).digest("hex");

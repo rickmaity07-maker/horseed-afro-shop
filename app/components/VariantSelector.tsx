@@ -96,7 +96,7 @@ export function VariantSelector({ variants }: { variants: Variant[] }) {
         </p>
       )}
       {selected.stock_quantity > 0 && selected.stock_quantity <= 5 && (
-        <p style={{ color: "#c79a3a", fontSize: 13, fontWeight: 700, marginTop: -10 }}>
+        <p style={{ color: "#e2702e", fontSize: 13, fontWeight: 700, marginTop: -10 }}>
           {t(`Nur noch ${selected.stock_quantity} verfügbar`, `Only ${selected.stock_quantity} left`)}
         </p>
       )}

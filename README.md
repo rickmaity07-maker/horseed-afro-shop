@@ -1,7 +1,7 @@
-# Al-Madina Markt — online shop
+# Horseed Afro Shop — online shop
 
-Online shop and admin portal for **Al-Madina Markt** (سوبر ماركت وملحمة المدينة),
-an Arabic/Turkish supermarket and halal butcher at Landwehrstraße 12, 97421 Schweinfurt.
+Online shop and admin portal for **Horseed Afro Shop** (سوبر ماركت وملحمة المدينة),
+an Arabic/Turkish supermarket and halal butcher at Schultesstraße 4, 97421 Schweinfurt.
 
 Next.js 15 (App Router) · React 19 · Tailwind CSS 4 · Postgres (Neon) via Prisma raw SQL · Nodemailer.
 Payment is **cash only**, on delivery or pickup — there is no payment gateway.

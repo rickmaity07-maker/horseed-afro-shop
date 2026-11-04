@@ -567,7 +567,7 @@ export default function AccountPage() {
                 style={{ padding: 20, display: "flex", flexDirection: "column", gap: 12 }}
               >
                 <div style={{ display: "flex", alignItems: "center", gap: 8, fontWeight: 700 }}>
-                  <MailWarning size={18} color="#c79a3a" /> {t("Bestätigen Sie Ihre E-Mail, um Bestellungen aufzugeben", "Confirm your email to place orders")}
+                  <MailWarning size={18} color="#e2702e" /> {t("Bestätigen Sie Ihre E-Mail, um Bestellungen aufzugeben", "Confirm your email to place orders")}
                 </div>
                 <p style={{ fontSize: 13, ...muted }}>
                   {t(
@@ -633,7 +633,7 @@ export default function AccountPage() {
                           style={{
                             fontSize: 12,
                             fontWeight: 700,
-                            background: "rgba(161,46,61,.08)",
+                            background: "rgba(59,35,24,.08)",
                             color: "var(--green-text)",
                             padding: "5px 12px",
                             borderRadius: 999,

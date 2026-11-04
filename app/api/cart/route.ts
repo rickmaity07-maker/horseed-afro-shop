@@ -11,7 +11,7 @@ import {
   type CartIdentity,
 } from "@/lib/cart";
 
-const GUEST_COOKIE_NAME = "almadina_guest_cart";
+const GUEST_COOKIE_NAME = "horseed_guest_cart";
 const GUEST_COOKIE_MAX_AGE = 60 * 60 * 24 * 90; // 90 days
 
 /**

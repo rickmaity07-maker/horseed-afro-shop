@@ -42,8 +42,8 @@ export function DeleteAccount({ t, onDeleted }: { t: (de: string, en: string) =>
   }
 
   return (
-    <section className="bg-white rounded-xl border shadow-sm" style={{ padding: 20, borderColor: "rgba(161,46,61,.3)" }}>
-      <h2 style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 18, color: "#a12e3d" }}>
+    <section className="bg-white rounded-xl border shadow-sm" style={{ padding: 20, borderColor: "rgba(59,35,24,.3)" }}>
+      <h2 style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 18, color: "#3b2318" }}>
         <Trash2 size={18} /> {t("Konto endgültig löschen", "Permanently delete account")}
       </h2>
       <p style={{ fontSize: 13, lineHeight: 1.6, color: "#4b544e", margin: "8px 0 12px" }}>

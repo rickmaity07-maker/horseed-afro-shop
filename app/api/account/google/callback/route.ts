@@ -6,7 +6,7 @@ import { mergeGuestCartIntoUser } from "@/lib/cart";
 import { rateLimit, clientIp } from "@/lib/rate-limit";
 import { GOOGLE_STATE_COOKIE, fetchGoogleProfile, googleLoginEnabled, safeNextPath } from "@/lib/google-auth";
 
-const GUEST_CART_COOKIE_NAME = "almadina_guest_cart";
+const GUEST_CART_COOKIE_NAME = "horseed_guest_cart";
 
 type UserRow = { id: string; email: string; verified: boolean };
 

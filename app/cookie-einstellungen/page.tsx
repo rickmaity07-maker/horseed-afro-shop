@@ -8,17 +8,17 @@ type CookieRow = { name: string; purpose: [string, string]; duration: [string, s
 
 const COOKIES: CookieRow[] = [
   {
-    name: "almadina_customer_session",
+    name: "horseed_customer_session",
     purpose: ["Hält Sie in Ihrem Konto angemeldet.", "Keeps you signed in to your account."],
     duration: ["60 Tage", "60 days"],
   },
   {
-    name: "almadina_admin_session",
+    name: "horseed_admin_session",
     purpose: ["Anmeldesitzung für das Store-Verwaltungsportal.", "Login session for the store admin portal."],
     duration: ["30 Tage", "30 days"],
   },
   {
-    name: "almadina_guest_cart",
+    name: "horseed_guest_cart",
     purpose: [
       "Merkt sich Ihren Warenkorb, bevor Sie sich anmelden.",
       "Remembers your shopping cart before you sign in.",
@@ -26,7 +26,7 @@ const COOKIES: CookieRow[] = [
     duration: ["90 Tage", "90 days"],
   },
   {
-    name: "almadina_language",
+    name: "horseed_language",
     purpose: [
       "Browser-Speicher (kein Cookie): merkt sich die von Ihnen gewählte Sprache.",
       "Browser storage (not a cookie): remembers the language you chose.",
@@ -34,7 +34,7 @@ const COOKIES: CookieRow[] = [
     duration: ["bis Sie ihn löschen", "until you clear it"],
   },
   {
-    name: "almadina_cookie_notice_ack",
+    name: "horseed_cookie_notice_ack",
     purpose: [
       "Browser-Speicher (kein Cookie): merkt sich, dass Sie diesen Hinweis geschlossen haben.",
       "Browser storage (not a cookie): remembers that you closed this notice.",

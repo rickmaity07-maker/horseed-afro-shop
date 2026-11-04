@@ -36,7 +36,7 @@ export default function DatenschutzPage() {
           <p>
             [{t("PLATZHALTER — vollständiger rechtlicher Name", "PLACEHOLDER — full legal name")}]
             <br />
-            Al-Madina Markt, Landwehrstraße 12, 97421 Schweinfurt, {t("Deutschland", "Germany")}
+            Horseed Afro Shop, Schultesstraße 4, 97421 Schweinfurt, {t("Deutschland", "Germany")}
             <br />
             {t("Telefon", "Phone")}: +49 163 8707437 · E-Mail: [{t("PLATZHALTER", "PLACEHOLDER")}]
           </p>

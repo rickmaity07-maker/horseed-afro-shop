@@ -13,7 +13,7 @@ describe("deliveryFeeFor", () => {
   it("always charges when there is no free-delivery threshold", () => expect(deliveryFeeFor({ ...s, freeDeliveryThreshold: 0 }, "DELIVERY", 500)).toBe(3.99));
 });
 
-describe("storeOpenState (Europe/Berlin, Mon–Sat 07:00–20:00)", () => {
+describe("storeOpenState (Europe/Berlin, Mon–Sat 09:00–20:00)", () => {
   // Dates are given in UTC; Berlin is UTC+2 in summer time.
   it("is open on a weekday afternoon", () => {
     expect(storeOpenState(new Date("2026-07-15T12:00:00Z"))).toEqual({ open: true, closesAt: "20:00", nextOpen: null });

@@ -1,5 +1,5 @@
 -- =====================================================================
--- 000_base_schema.sql — Al-Madina Markt, Postgres (Neon)
+-- 000_base_schema.sql — Horseed Afro Shop, Postgres (Neon)
 --
 -- The core tables exactly as the app queries them (all access is raw SQL
 -- via prisma.$queryRaw — prisma/schema.prisma intentionally declares no

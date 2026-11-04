@@ -80,7 +80,7 @@ export default function OrderTimeline({ order }: { order: TrackableOrder }) {
                     left: "-50%",
                     width: "100%",
                     height: 2,
-                    background: i <= currentIdx ? "#a12e3d" : "rgba(0,0,0,.1)",
+                    background: i <= currentIdx ? "#3b2318" : "rgba(0,0,0,.1)",
                     zIndex: 0,
                   }}
                 />
@@ -96,7 +96,7 @@ export default function OrderTimeline({ order }: { order: TrackableOrder }) {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  background: done ? "#a12e3d" : "rgba(0,0,0,.06)",
+                  background: done ? "#3b2318" : "rgba(0,0,0,.06)",
                   color: done ? "#fff" : "rgba(0,0,0,.35)",
                 }}
               >

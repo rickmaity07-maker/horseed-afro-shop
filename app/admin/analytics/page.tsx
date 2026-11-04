@@ -62,7 +62,7 @@ export default function AnalyticsPage() {
         <button
           key={d}
           onClick={() => setDays(d)}
-          className={`px-3 py-1.5 rounded-full text-sm border ${days === d ? "bg-[#a12e3d] text-white border-[#a12e3d]" : "bg-white border-black/10 text-black/60"}`}
+          className={`px-3 py-1.5 rounded-full text-sm border ${days === d ? "bg-[#3b2318] text-white border-[#3b2318]" : "bg-white border-black/10 text-black/60"}`}
         >
           {t(`${d} Tage`, `${d} days`)}
         </button>
@@ -112,12 +112,12 @@ export default function AnalyticsPage() {
         <Kpi icon={Ticket} label={t("Gewährte Rabatte", "Discounts given")} value={money(data.totalDiscount)} t={t} />
         <div className="bg-white rounded-xl border border-black/5 p-5 col-span-2">
           <div className="text-black/50 text-xs uppercase tracking-wide mb-3">{t("Lieferung vs. Abholung", "Delivery vs. pickup")}</div>
-          <div className="h-3 rounded-full bg-[#e3b23c]/40 overflow-hidden flex">
-            <div className="h-full bg-[#a12e3d]" style={{ width: `${deliveryShare}%` }} />
+          <div className="h-3 rounded-full bg-[#f3c79c]/40 overflow-hidden flex">
+            <div className="h-full bg-[#3b2318]" style={{ width: `${deliveryShare}%` }} />
           </div>
           <div className="flex justify-between text-sm mt-2">
             <span className="flex items-center gap-1">
-              <Truck size={14} className="text-[#a12e3d]" /> {data.fulfillment.DELIVERY.orders} · {money(data.fulfillment.DELIVERY.revenue)}
+              <Truck size={14} className="text-[#3b2318]" /> {data.fulfillment.DELIVERY.orders} · {money(data.fulfillment.DELIVERY.revenue)}
             </span>
             <span className="flex items-center gap-1">
               <Store size={14} className="text-[#b08a1e]" /> {data.fulfillment.PICKUP.orders} · {money(data.fulfillment.PICKUP.revenue)}
@@ -129,10 +129,10 @@ export default function AnalyticsPage() {
       {data.lowStock.length > 0 && (
         <div className="bg-[#fff3ee] border border-[#e0a98c] rounded-xl p-5 mb-8">
           <div className="flex items-center justify-between gap-2 mb-3">
-            <div className="flex items-center gap-2 font-semibold text-[#a12e3d]">
+            <div className="flex items-center gap-2 font-semibold text-[#3b2318]">
               <AlertTriangle size={16} /> {t("Niedriger Bestand — nachbestellen", "Low stock — reorder")}
             </div>
-            <a href="/admin/products" className="text-xs font-semibold text-[#a12e3d] underline">
+            <a href="/admin/products" className="text-xs font-semibold text-[#3b2318] underline">
               {t("Bestand bearbeiten", "Edit stock")}
             </a>
           </div>
@@ -155,7 +155,7 @@ export default function AnalyticsPage() {
           {data.revenueByDay.map((d) => (
             <div key={d.date} className="flex-1 h-full flex flex-col justify-end group relative">
               <div
-                className={`w-full rounded-t ${d.revenue > 0 ? "bg-[#a12e3d]/75 group-hover:bg-[#a12e3d]" : "bg-black/5"}`}
+                className={`w-full rounded-t ${d.revenue > 0 ? "bg-[#3b2318]/75 group-hover:bg-[#3b2318]" : "bg-black/5"}`}
                 style={{ height: `${d.revenue > 0 ? Math.max(4, (d.revenue / maxDayRevenue) * 100) : 2}%` }}
                 title={`${new Date(`${d.date}T12:00:00Z`).toLocaleDateString(locale, { timeZone: "UTC" })}: ${money(d.revenue)} · ${t(`${d.orders} Bestellungen`, `${d.orders} orders`)}`}
               />
@@ -194,7 +194,7 @@ export default function AnalyticsPage() {
               <div key={d} className="flex items-center gap-3 text-sm">
                 <span className="w-8 text-black/60">{t(WEEKDAYS[d][0], WEEKDAYS[d][1])}</span>
                 <div className="flex-1 h-4 bg-black/5 rounded">
-                  <div className="h-full bg-[#e3b23c] rounded" style={{ width: `${(data.ordersByWeekday[d].orders / maxWeekday) * 100}%` }} />
+                  <div className="h-full bg-[#f3c79c] rounded" style={{ width: `${(data.ordersByWeekday[d].orders / maxWeekday) * 100}%` }} />
                 </div>
                 <span className="w-24 text-right text-black/60">
                   {data.ordersByWeekday[d].orders} · {money(data.ordersByWeekday[d].revenue)}

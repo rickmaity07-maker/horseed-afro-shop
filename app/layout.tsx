@@ -1,22 +1,26 @@
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { CookieNotice } from "./components/CookieNotice";
 import { STORE, openingHoursSpecification } from "@/lib/store-info";
+
+// The sign's heavy geometric capitals; self-hosted by Next.js, so no request goes to Google.
+const montserrat = Montserrat({ subsets: ["latin", "latin-ext"], weight: ["400", "500", "600", "700", "800"], variable: "--font-montserrat", display: "swap" });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 // Local-business structured data: lets Google show address, hours and phone for the shop.
 const storeJsonLd = {
   "@context": "https://schema.org",
-  "@type": "GroceryStore",
+  "@type": "Store",
   name: STORE.name,
-  alternateName: STORE.arabicName,
-  description: "Arabischer & türkischer Supermarkt mit Halal-Metzgerei in Schweinfurt.",
+
+  description: "Afro Shop in Schweinfurt: somalische und afrikanische Lebensmittel, Haushaltsartikel, Kosmetik, Kleider und Anzüge.",
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
-  image: `${SITE_URL}/logo.png`,
+  logo: `${SITE_URL}/icon-512.png`,
+  image: `${SITE_URL}/images/horseed-shopfront.jpg`,
   telephone: STORE.phoneE164,
   priceRange: "€",
   paymentAccepted: "Cash",
@@ -28,7 +32,6 @@ const storeJsonLd = {
     addressLocality: STORE.city,
     addressCountry: STORE.countryCode,
   },
-  geo: { "@type": "GeoCoordinates", latitude: STORE.geo.lat, longitude: STORE.geo.lng },
   hasMap: STORE.mapUrl,
   openingHoursSpecification: openingHoursSpecification(),
 };
@@ -36,19 +39,19 @@ const storeJsonLd = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Al-Madina Markt | Arabischer Supermarkt & Halal-Metzgerei in Schweinfurt",
-    template: "%s | Al-Madina",
+    default: "Horseed Afro Shop | Lebensmittel, Kosmetik & Kleidung in Schweinfurt",
+    template: "%s | Horseed Afro Shop",
   },
   description:
-    "Al-Madina Markt, Landwehrstraße 12, Schweinfurt: arabische, türkische & mediterrane Lebensmittel und frisches Halal-Fleisch. Online bestellen — Lieferung oder Abholung, bar bezahlen. Mo–Sa 7–20 Uhr.",
+    "Horseed Afro Shop, Schultesstraße 4, Schweinfurt: somalische und afrikanische Lebensmittel, Haushaltsartikel, Kosmetik und Parfums, Kleider und Anzüge. Online bestellen, abholen oder liefern lassen, bar bezahlen. Mo–Sa 9–20 Uhr.",
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: "/favicon.png",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Al-Madina Markt — Supermarkt & Halal-Metzgerei, Schweinfurt",
-    description: "Arabische, türkische & mediterrane Lebensmittel und frisches Halal-Fleisch. Lieferung oder Abholung, bar bezahlen.",
-    siteName: "Al-Madina Markt",
+    title: "Horseed Afro Shop, Schweinfurt",
+    description: "Lebensmittel, Haushaltsartikel, Kosmetik, Kleider & Anzüge. Abholung oder Lieferung, bar bezahlen.",
+    siteName: "Horseed Afro Shop",
     locale: "de_DE",
     type: "website",
   },
@@ -57,7 +60,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#a12e3d",
+  themeColor: "#2a1913",
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -66,7 +69,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const nonce = (await headers()).get("x-nonce") ?? undefined;
   return (
     // suppressHydrationWarning: browser translation rewrites lang/class on <html> before React loads.
-    <html lang="de" suppressHydrationWarning>
+    <html lang="de" className={montserrat.variable} suppressHydrationWarning>
       <body>
         {/* suppressHydrationWarning: browsers hide nonce attributes from the DOM, so React sees nonce="" on the client. */}
         <script type="application/ld+json" nonce={nonce} suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify(storeJsonLd).replace(/</g, "\\u003c") }} />

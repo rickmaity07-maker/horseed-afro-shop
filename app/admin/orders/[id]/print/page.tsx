@@ -63,7 +63,7 @@ export default function PackingSlipPage() {
       <header style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", borderBottom: "2px solid #111", paddingBottom: 12 }}>
         <div>
           <div style={{ fontSize: 22, fontWeight: 700 }}>{STORE.name}</div>
-          <div dir="rtl" style={{ fontSize: 13 }}>{STORE.arabicName}</div>
+          <div style={{ fontSize: 13 }}>{STORE.tagline.de}</div>
           <div>
             {STORE.street}, {STORE.postalCode} {STORE.city} · Tel. {STORE.phoneDisplay}
           </div>
@@ -163,7 +163,7 @@ export default function PackingSlipPage() {
           Fahrer: nach Übergabe bestätigen unter {origin}/deliver/{order.deliveryToken}
         </p>
       )}
-      <p style={{ marginTop: 24, fontSize: 11, color: "#555", textAlign: "center" }}>Vielen Dank für Ihren Einkauf bei {STORE.name}! · Mo–Sa 07:00–20:00 Uhr</p>
+      <p style={{ marginTop: 24, fontSize: 11, color: "#555", textAlign: "center" }}>Vielen Dank für Ihren Einkauf bei {STORE.name}! · Mo–Sa 09:00–20:00 Uhr</p>
     </main>
   );
 }

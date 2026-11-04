@@ -19,19 +19,19 @@ export default function ImpressumPage() {
 
         <div className="checkout-error" style={{ marginBottom: 24 }}>
           {t(
-            "Platzhalter — dieser Impressum-Entwurf muss mit den echten Geschäftsangaben vervollständigt und vor Veröffentlichung juristisch geprüft werden.",
-            "Placeholder — this Impressum draft must be completed with the real business details and legally reviewed before going live."
+            "Noch offen: öffentliche E-Mail-Adresse und ggf. USt-IdNr. Vor Veröffentlichung ergänzen und juristisch prüfen lassen.",
+            "Still open: public email address and VAT ID if any. Complete and have it legally reviewed before going live."
           )}
         </div>
 
         <section style={{ marginBottom: 28 }}>
           <h2 style={{ fontSize: 16, marginBottom: 10 }}>{t("Angaben gemäß § 5 DDG", "Information according to § 5 DDG")}</h2>
           <p style={{ lineHeight: 1.8 }}>
-            [{t("Vollständiger rechtlicher Name / Rechtsform — PLATZHALTER", "Full legal name / legal form — PLACEHOLDER")}]
+            Horseed Afro Shop
             <br />
-            Al-Madina Markt
+            {t("Inhaber", "Owner")}: Said Mahamud
             <br />
-            Landwehrstraße 12
+            Schultesstraße 4
             <br />
             97421 Schweinfurt
             <br />
@@ -42,7 +42,7 @@ export default function ImpressumPage() {
         <section style={{ marginBottom: 28 }}>
           <h2 style={{ fontSize: 16, marginBottom: 10 }}>{t("Kontakt", "Contact")}</h2>
           <p style={{ lineHeight: 1.8 }}>
-            {t("Telefon", "Phone")}: +49 163 8707437
+            {t("Telefon", "Phone")}: +49 1520 9442155
             <br />
             E-Mail: [{t("PLATZHALTER — öffentliche Kontakt-E-Mail", "PLACEHOLDER — public contact email")}]
           </p>
@@ -71,9 +71,9 @@ export default function ImpressumPage() {
             {t("Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV", "Responsible for content according to § 18 (2) MStV")}
           </h2>
           <p style={{ lineHeight: 1.8 }}>
-            [{t("PLATZHALTER — vollständiger Name der verantwortlichen Person", "PLACEHOLDER — full name of the responsible person")}]
+            Said Mahamud
             <br />
-            Landwehrstraße 12, 97421 Schweinfurt
+            Schultesstraße 4, 97421 Schweinfurt
           </p>
         </section>
 

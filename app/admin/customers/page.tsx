@@ -122,7 +122,7 @@ Name, email, phone, addresses, wishlist and reviews are removed. Orders are kept
                 <td>{c.phone ? <a href={`tel:${c.phone.replace(/\s/g, "")}`}>{c.phone}</a> : <span className="text-black/30">–</span>}</td>
                 <td className="text-right">
                   {c.orderCount}
-                  {c.orderCount >= 5 && <span className="ml-1 text-[10px] font-bold bg-[#e3b23c]/30 text-[#7a5a10] px-1.5 py-0.5 rounded-full">VIP</span>}
+                  {c.orderCount >= 5 && <span className="ml-1 text-[10px] font-bold bg-[#f3c79c]/30 text-[#6a3a17] px-1.5 py-0.5 rounded-full">VIP</span>}
                 </td>
                 <td className="text-right">€{c.totalSpent.toFixed(2)}</td>
                 <td>{c.lastOrderAt ? new Date(c.lastOrderAt).toLocaleDateString(locale) : <span className="text-black/30">–</span>}</td>

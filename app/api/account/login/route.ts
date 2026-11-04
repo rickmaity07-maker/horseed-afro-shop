@@ -7,7 +7,7 @@ import { signCustomerToken, CUSTOMER_COOKIE_NAME, CUSTOMER_COOKIE_OPTIONS } from
 import { mergeGuestCartIntoUser } from "@/lib/cart";
 import { rateLimit, isRateLimited, clientIp } from "@/lib/rate-limit";
 
-const GUEST_CART_COOKIE_NAME = "almadina_guest_cart";
+const GUEST_CART_COOKIE_NAME = "horseed_guest_cart";
 
 type UserRow = {
   id: string;

@@ -51,7 +51,7 @@ export default function ReviewsPage() {
           <button
             key={String(n)}
             onClick={() => setFilter(n)}
-            className={`px-3 py-1.5 rounded-full text-sm border ${filter === n ? "bg-[#a12e3d] text-white border-[#a12e3d]" : "bg-white border-black/10 text-black/60"}`}
+            className={`px-3 py-1.5 rounded-full text-sm border ${filter === n ? "bg-[#3b2318] text-white border-[#3b2318]" : "bg-white border-black/10 text-black/60"}`}
           >
             {n === null ? t("Alle", "All") : `${n} ★`}
           </button>

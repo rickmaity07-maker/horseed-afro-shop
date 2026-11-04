@@ -1,41 +1,39 @@
-// Single source of truth for the store's public business details — matches
-// the Google Maps listing ("Al-Madina Markt سوبر ماركت وملحمة المدينة").
+// Single source of truth for the shop's public business details, as printed on the shop sign.
 // Used by the storefront, legal pages, emails and structured data (JSON-LD).
 
 export const STORE = {
-  name: "Al-Madina Markt",
-  arabicName: "سوبر ماركت وملحمة المدينة",
-  tagline: { de: "Supermarkt & Halal-Metzgerei", en: "Supermarket & halal butcher" },
-  street: "Landwehrstraße 12",
+  name: "Horseed Afro Shop",
+  owner: "Said Mahamud",
+  tagline: { de: "Afro Shop: Lebensmittel, Haushalt, Kosmetik & Kleidung", en: "Afro shop: groceries, household, cosmetics & clothing" },
+  street: "Schultesstraße 4",
   postalCode: "97421",
   city: "Schweinfurt",
   country: "Germany",
   countryCode: "DE",
-  phoneDisplay: "0163 8707437",
-  phoneE164: "+491638707437",
-  plusCode: "26QC+WJ Schweinfurt",
-  // Centre of Plus Code 9F2X26QC+WJ (Landwehrstraße 12), decoded by hand.
-  geo: { lat: 50.03481, lng: 10.22156 },
+  phoneDisplay: "01520 9442155",
+  phoneE164: "+4915209442155",
+  // TODO: confirm the map pin. Approximate centre of Schultesstraße, Schweinfurt (from the address, not surveyed).
+  geo: { lat: 50.0447, lng: 10.2297 },
   mapUrl:
-    "https://www.google.com/maps/search/?api=1&query=Al-Madina%20Markt%2C%20Landwehrstra%C3%9Fe%2012%2C%2097421%20Schweinfurt",
+    "https://www.google.com/maps/search/?api=1&query=Horseed%20Afro%20Shop%2C%20Schultesstra%C3%9Fe%204%2C%2097421%20Schweinfurt",
   directionsUrl:
-    "https://www.google.com/maps/dir/?api=1&destination=Al-Madina%20Markt%2C%20Landwehrstra%C3%9Fe%2012%2C%2097421%20Schweinfurt",
+    "https://www.google.com/maps/dir/?api=1&destination=Schultesstra%C3%9Fe%204%2C%2097421%20Schweinfurt",
   services: [
     { key: "instore", de: "Einkaufen im Laden", en: "In-store shopping" },
-    { key: "pickup", de: "Abholung am Straßenrand", en: "Kerbside pickup" },
-    { key: "delivery", de: "Lieferung", en: "Delivery" },
+    { key: "pickup", de: "Abholung im Laden", en: "Click & collect" },
+    { key: "delivery", de: "Lieferung in Schweinfurt und Umgebung", en: "Delivery around Schweinfurt" },
   ],
 } as const;
 
 /** 0 = Sunday … 6 = Saturday, same as Date#getDay(). null = closed all day. */
 export const OPENING_HOURS: { day: number; de: string; en: string; open: string | null; close: string | null }[] = [
-  { day: 1, de: "Montag", en: "Monday", open: "07:00", close: "20:00" },
-  { day: 2, de: "Dienstag", en: "Tuesday", open: "07:00", close: "20:00" },
-  { day: 3, de: "Mittwoch", en: "Wednesday", open: "07:00", close: "20:00" },
-  { day: 4, de: "Donnerstag", en: "Thursday", open: "07:00", close: "20:00" },
-  { day: 5, de: "Freitag", en: "Friday", open: "07:00", close: "20:00" },
-  { day: 6, de: "Samstag", en: "Saturday", open: "07:00", close: "20:00" },
-  { day: 0, de: "Sonntag", en: "Sunday", open: null, close: null },
+  { day: 1, de: "Montag", en: "Monday", open: "09:00", close: "20:00" },
+  { day: 2, de: "Dienstag", en: "Tuesday", open: "09:00", close: "20:00" },
+  { day: 3, de: "Mittwoch", en: "Wednesday", open: "09:00", close: "20:00" },
+  { day: 4, de: "Donnerstag", en: "Thursday", open: "09:00", close: "20:00" },
+  { day: 5, de: "Freitag", en: "Friday", open: "09:00", close: "20:00" },
+  { day: 6, de: "Samstag", en: "Saturday", open: "09:00", close: "20:00" },
+  { day: 0, de: "Sonntag", en: "Sunday", open: null, close: null }, // Sundays and public holidays closed (shop sign)
 ];
 
 /** Current open/closed state in the store's own timezone (Europe/Berlin). */

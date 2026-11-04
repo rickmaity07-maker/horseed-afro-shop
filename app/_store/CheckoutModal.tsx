@@ -212,8 +212,8 @@ export function CheckoutModal({ cart, subtotal, account, settings, slots, onClos
         {fulfillment === "PICKUP" && (
           <p className="pickup-note">
             {t(
-              `Wir packen Ihre Bestellung — Abholung im Laden oder am Straßenrand: ${STORE.street}, ${STORE.postalCode} ${STORE.city} (Mo–Sa 07:00–20:00).`,
-              `We'll pack your order — pick it up in store or at the kerb: ${STORE.street}, ${STORE.postalCode} ${STORE.city} (Mon–Sat 07:00–20:00).`
+              `Wir packen Ihre Bestellung — Abholung im Laden oder am Straßenrand: ${STORE.street}, ${STORE.postalCode} ${STORE.city} (Mo–Sa 09:00–20:00).`,
+              `We'll pack your order — pick it up in store or at the kerb: ${STORE.street}, ${STORE.postalCode} ${STORE.city} (Mon–Sat 09:00–20:00).`
             )}
           </p>
         )}

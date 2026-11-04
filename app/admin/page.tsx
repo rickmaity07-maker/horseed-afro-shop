@@ -119,11 +119,11 @@ export default function AdminOrdersPage() {
 
   useEffect(() => {
     const onChange = () => load();
-    window.addEventListener("almadina:new-order", onChange);
-    window.addEventListener("almadina:order-updated", onChange);
+    window.addEventListener("horseed:new-order", onChange);
+    window.addEventListener("horseed:order-updated", onChange);
     return () => {
-      window.removeEventListener("almadina:new-order", onChange);
-      window.removeEventListener("almadina:order-updated", onChange);
+      window.removeEventListener("horseed:new-order", onChange);
+      window.removeEventListener("horseed:order-updated", onChange);
     };
   }, [load]);
 
@@ -234,7 +234,7 @@ export default function AdminOrdersPage() {
             key={tabDef.key}
             onClick={() => setTab(tabDef.key)}
             className={`px-4 py-2 rounded-full text-sm font-medium border shrink-0 whitespace-nowrap ${
-              tab === tabDef.key ? "bg-[#a12e3d] text-white border-[#a12e3d]" : "border-black/10 text-black/60 bg-white"
+              tab === tabDef.key ? "bg-[#3b2318] text-white border-[#3b2318]" : "border-black/10 text-black/60 bg-white"
             }`}
           >
             {t(tabDef.label[0], tabDef.label[1])}
@@ -327,7 +327,7 @@ function OrderCard({
               <span>{order.fulfillment === "PICKUP" ? t("Abholung", "Pickup") : t("Lieferung", "Delivery")}</span>
             </span>
             {order.slot && (
-              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#a12e3d]/10 text-[#a12e3d] flex items-center gap-1">
+              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-[#3b2318]/10 text-[#3b2318] flex items-center gap-1">
                 <CalendarClock size={11} /> {formatSlot(order.slot, language)}
               </span>
             )}
@@ -347,7 +347,7 @@ function OrderCard({
           <div className="font-semibold">{order.customerName}</div>
           {order.customerEmail ? (
             <>
-              <a href={`tel:${order.customerPhone.replace(/\s/g, "")}`} className="flex items-center gap-1.5 text-black/60 hover:text-[#a12e3d]">
+              <a href={`tel:${order.customerPhone.replace(/\s/g, "")}`} className="flex items-center gap-1.5 text-black/60 hover:text-[#3b2318]">
                 <Phone size={13} /> {order.customerPhone}
               </a>
               <div className="flex items-start gap-1.5 text-black/60">
@@ -362,7 +362,7 @@ function OrderCard({
               href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(order.address)}`}
               target="_blank"
               rel="noreferrer"
-              className="flex items-start gap-1.5 text-black/60 hover:text-[#a12e3d]"
+              className="flex items-start gap-1.5 text-black/60 hover:text-[#3b2318]"
             >
               <MapPin size={13} className="mt-0.5 shrink-0" /> {order.address}
             </a>

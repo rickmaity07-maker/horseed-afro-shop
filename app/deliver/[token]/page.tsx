@@ -67,9 +67,9 @@ export default function DeliverPage() {
     <main className="min-h-screen bg-[#f8f7f3] flex items-center justify-center p-4">
       <div className="w-full max-w-sm bg-white rounded-2xl shadow-xl border border-black/5 p-6">
         <div className="flex items-center gap-2 mb-4">
-          <img src="/logo.png" alt="Al-Madina" className="w-10 h-12 object-contain" />
+          <img src="/logo.png" alt="Horseed Afro Shop" className="w-10 h-12 object-contain" />
           <div>
-            <div className="font-serif text-lg leading-tight">Al-Madina Markt</div>
+            <div className="font-serif text-lg leading-tight">Horseed Afro Shop</div>
             <div className="text-xs text-black/40">
               {t("Bestellung", "Order")} #{order.orderNumber}
             </div>
@@ -123,7 +123,7 @@ export default function DeliverPage() {
           <button
             onClick={confirm}
             disabled={confirming}
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#a12e3d] to-[#7a1a26] text-white font-semibold py-3 disabled:opacity-60"
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-[#3b2318] to-[#1f120d] text-white font-semibold py-3 disabled:opacity-60"
           >
             <Package size={16} />
             {confirming

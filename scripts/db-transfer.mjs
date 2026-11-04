@@ -17,7 +17,7 @@ if (existsSync(".env")) {
 }
 
 const [command, fileArg] = process.argv.slice(2);
-const file = fileArg ?? "al-madina.dump";
+const file = fileArg ?? "horseed.dump";
 
 function run(cmd, args) {
   const res = spawnSync(cmd, args, { stdio: "inherit" });

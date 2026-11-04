@@ -164,7 +164,7 @@ export default function AdminProductsPage() {
     <button
       key={key}
       onClick={() => setFilter(key)}
-      className={`px-3 py-1.5 rounded-full text-sm border ${filter === key ? "bg-[#a12e3d] text-white border-[#a12e3d]" : "bg-white border-black/10 text-black/60"}`}
+      className={`px-3 py-1.5 rounded-full text-sm border ${filter === key ? "bg-[#3b2318] text-white border-[#3b2318]" : "bg-white border-black/10 text-black/60"}`}
     >
       {label}
       {count ? <span className="ml-1 opacity-70">({count})</span> : null}
@@ -266,14 +266,14 @@ export default function AdminProductsPage() {
 
       <div className="grid gap-2">
         {shown.map((p) => (
-          <div key={p.id} className={`bg-white rounded-2xl border p-3 flex items-center gap-3 ${selected.has(p.id) ? "border-[#a12e3d]" : "border-black/5"}`}>
+          <div key={p.id} className={`bg-white rounded-2xl border p-3 flex items-center gap-3 ${selected.has(p.id) ? "border-[#3b2318]" : "border-black/5"}`}>
             <input type="checkbox" checked={selected.has(p.id)} onChange={() => toggleOne(p.id)} aria-label={t(`${p.name} auswählen`, `Select ${p.name}`)} />
             <img src={sizedImage(p.image, 160)} alt="" className="w-14 h-14 rounded-xl object-contain bg-white shrink-0" loading="lazy" />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
                 <span className="font-medium">{p.name}</span>
                 {!p.active && <span className="text-[10px] font-bold bg-black/10 text-black/50 px-2 py-0.5 rounded-full">{t("VERSTECKT", "HIDDEN")}</span>}
-                {p.badge && <span className="text-[10px] font-bold bg-[#e3b23c]/30 text-[#7a5a10] px-2 py-0.5 rounded-full">{p.badge}</span>}
+                {p.badge && <span className="text-[10px] font-bold bg-[#f3c79c]/30 text-[#6a3a17] px-2 py-0.5 rounded-full">{p.badge}</span>}
                 {!p.nameEn && <span className="text-[10px] font-bold bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full">{t("EN fehlt", "EN missing")}</span>}
                 {(() => {
                   const missing = missingFoodInfo(p);

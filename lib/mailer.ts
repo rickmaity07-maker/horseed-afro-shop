@@ -98,7 +98,7 @@ function itemsTable(items: OrderItem[]) {
   return `
     <table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:14px">
       <thead>
-        <tr style="text-align:left;border-bottom:2px solid #a12e3d">
+        <tr style="text-align:left;border-bottom:2px solid #3b2318">
           <th style="padding:6px 4px">Artikel</th>
           <th style="padding:6px 4px">Größe</th>
           <th style="padding:6px 4px;text-align:center">Menge</th>
@@ -125,9 +125,9 @@ function baseWrapper(title: string, bodyHtml: string) {
   return `
   <div style="font-family:Arial,Helvetica,sans-serif;background:#f8f7f3;padding:24px">
     <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #eee">
-      <div style="background:linear-gradient(135deg,#a12e3d,#7a1a26);color:#fff;padding:20px 24px">
-        <div style="font-size:20px;font-weight:bold;letter-spacing:-0.02em">Al-Madina Markt</div>
-        <div style="font-size:12px;opacity:.85;margin-top:2px">Halal Lebensmittel · Schweinfurt</div>
+      <div style="background:linear-gradient(135deg,#3b2318,#1f120d);color:#fff;padding:20px 24px">
+        <div style="font-size:20px;font-weight:bold;letter-spacing:-0.02em">Horseed Afro Shop</div>
+        <div style="font-size:12px;opacity:.85;margin-top:2px">Afro Shop · Schweinfurt</div>
       </div>
       <div style="padding:24px;color:#222">
         <h2 style="margin:0 0 12px;font-size:20px">${title}</h2>
@@ -135,7 +135,7 @@ function baseWrapper(title: string, bodyHtml: string) {
       </div>
       <div style="padding:16px 24px;background:#f8f7f3;color:#999;font-size:11px">
         ${STORE.name} · ${STORE.street}, ${STORE.postalCode} ${STORE.city} · Tel. ${STORE.phoneDisplay}<br/>
-        Mo–Sa 07:00–20:00 Uhr · Dies ist eine automatische Nachricht.
+        Mo–Sa 09:00–20:00 Uhr · Dies ist eine automatische Nachricht.
       </div>
     </div>
   </div>`;
@@ -143,7 +143,7 @@ function baseWrapper(title: string, bodyHtml: string) {
 
 function fulfillmentLine(order: OrderWithItems) {
   return order.fulfillment === "PICKUP"
-    ? `<p><b>Abholung im Laden</b> — wir packen Ihre Bestellung, sie ist bei Al-Madina Markt zur Abholung bereit.</p>`
+    ? `<p><b>Abholung im Laden</b> — wir packen Ihre Bestellung, sie ist bei Horseed Afro Shop zur Abholung bereit.</p>`
     : `<p><b>Lieferung nach Hause</b> an: ${escapeHtml(order.address ?? "")}</p>`;
 }
 
@@ -184,7 +184,7 @@ export async function sendCustomerConfirmationEmail(order: OrderWithItems) {
   await transport.sendMail({
     from: process.env.SMTP_FROM || process.env.SMTP_USER,
     to: order.customerEmail,
-    subject: `Ihre Al-Madina Markt Bestellung #${order.orderNumber}`,
+    subject: `Ihre Horseed Afro Shop Bestellung #${order.orderNumber}`,
     html,
   });
   return { sent: true };
@@ -210,7 +210,7 @@ export async function sendStoreNotificationEmail(order: OrderWithItems) {
     ${order.discount ? `<p><b>Gutschein:</b> ${escapeHtml(order.couponCode ?? "")} (−${money(order.discount)})</p>` : ""}
     ${itemsTable(order.items)}
     <p style="font-size:16px;font-weight:bold">Einzusammelnder Betrag (bar): ${money(order.total)}</p>
-    <p><a href="${adminUrl}" style="display:inline-block;margin-top:12px;background:#a12e3d;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none">Admin-Portal öffnen</a></p>
+    <p><a href="${adminUrl}" style="display:inline-block;margin-top:12px;background:#3b2318;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none">Admin-Portal öffnen</a></p>
     `
   );
 
@@ -252,7 +252,7 @@ export async function sendStatusUpdateEmail(order: OrderWithItems) {
           order.fulfillment === "PICKUP" ? "Abholung" : "Lieferung"
         }).</p>${
           order.status === "PACKED" && order.fulfillment === "PICKUP"
-            ? `<p>Abholung: ${STORE.street}, ${STORE.postalCode} ${STORE.city} · Mo–Sa 07:00–20:00 Uhr</p>`
+            ? `<p>Abholung: ${STORE.street}, ${STORE.postalCode} ${STORE.city} · Mo–Sa 09:00–20:00 Uhr</p>`
             : ""
         }`
   );
@@ -286,7 +286,7 @@ export async function sendLowStockAlert(items: { productName: string; sizeLabel:
     <ul style="font-size:14px">
       ${items.map((i) => `<li><b>${escapeHtml(i.productName)}</b> (${escapeHtml(i.sizeLabel)}) — noch ${i.stock}</li>`).join("")}
     </ul>
-    <p><a href="${adminUrl}" style="display:inline-block;margin-top:12px;background:#a12e3d;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none">Produkte verwalten</a></p>
+    <p><a href="${adminUrl}" style="display:inline-block;margin-top:12px;background:#3b2318;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none">Produkte verwalten</a></p>
     `
   );
 
@@ -311,7 +311,7 @@ export async function sendVerificationEmail(email: string, name: string, code: s
     "Bestätigen Sie Ihre E-Mail-Adresse",
     `
     <p>Hallo ${escapeHtml(name)}, verwenden Sie diesen Code, um Ihre E-Mail-Adresse zu bestätigen:</p>
-    <p style="font-size:32px;font-weight:bold;letter-spacing:6px;text-align:center;margin:20px 0;color:#a12e3d">${escapeHtml(code)}</p>
+    <p style="font-size:32px;font-weight:bold;letter-spacing:6px;text-align:center;margin:20px 0;color:#3b2318">${escapeHtml(code)}</p>
     <p style="font-size:12px;color:#8a918c">Dieser Code läuft in 15 Minuten ab. Sie müssen Ihre E-Mail bestätigen, bevor Sie eine Bestellung aufgeben können.</p>
     <p style="font-size:12px;color:#8a918c">Falls Sie kein Konto erstellt haben, können Sie diese E-Mail ignorieren.</p>
     `
@@ -338,7 +338,7 @@ export async function sendPasswordResetEmail(email: string, name: string, resetU
     "Passwort zurücksetzen",
     `
     <p>Hallo ${escapeHtml(name)}, Sie haben angefordert, Ihr Passwort zurückzusetzen.</p>
-    <p><a href="${escapeHtml(resetUrl)}" style="display:inline-block;margin:12px 0;background:#a12e3d;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:bold">Neues Passwort festlegen</a></p>
+    <p><a href="${escapeHtml(resetUrl)}" style="display:inline-block;margin:12px 0;background:#3b2318;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:bold">Neues Passwort festlegen</a></p>
     <p style="font-size:12px;color:#8a918c">Der Link ist 60 Minuten gültig und kann nur einmal verwendet werden.</p>
     <p style="font-size:12px;color:#8a918c">Falls Sie das nicht angefordert haben, können Sie diese E-Mail ignorieren — Ihr Passwort bleibt unverändert.</p>
     `
@@ -353,7 +353,7 @@ export async function sendPasswordResetEmail(email: string, name: string, resetU
   await transport.sendMail({
     from: process.env.SMTP_FROM || process.env.SMTP_USER,
     to: email,
-    subject: "Passwort zurücksetzen — Al-Madina Markt",
+    subject: "Passwort zurücksetzen — Horseed Afro Shop",
     html,
   });
   return { sent: true };
@@ -370,7 +370,7 @@ export async function sendAccountExistsEmail(email: string, name: string, loginU
     "Sie haben bereits ein Konto",
     `
     <p>Hallo ${escapeHtml(name)}, gerade wurde versucht, mit dieser E-Mail-Adresse ein neues Konto zu erstellen. Sie haben bereits eines.</p>
-    <p><a href="${escapeHtml(loginUrl)}" style="display:inline-block;margin:12px 0;background:#a12e3d;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:bold">Jetzt anmelden</a></p>
+    <p><a href="${escapeHtml(loginUrl)}" style="display:inline-block;margin:12px 0;background:#3b2318;color:#fff;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:bold">Jetzt anmelden</a></p>
     <p>Passwort vergessen? <a href="${escapeHtml(resetUrl)}">Hier zurücksetzen</a>.</p>
     <p style="font-size:12px;color:#8a918c">Falls Sie das nicht waren, können Sie diese E-Mail ignorieren — an Ihrem Konto wurde nichts geändert.</p>
     `
@@ -384,7 +384,7 @@ export async function sendAccountExistsEmail(email: string, name: string, loginU
   await transport.sendMail({
     from: process.env.SMTP_FROM || process.env.SMTP_USER,
     to: email,
-    subject: "Sie haben bereits ein Konto — Al-Madina Markt",
+    subject: "Sie haben bereits ein Konto — Horseed Afro Shop",
     html,
   });
   return { sent: true };
@@ -444,7 +444,7 @@ export async function sendStoreWithdrawalNotice(orderNumber: string, outcome: Wi
     subject: `↩️ Widerruf zu Bestellung #${orderNumber}`,
     html: baseWrapper(
       `Widerruf zu Bestellung #${escapeHtml(orderNumber)}`,
-      `<p>${what}</p><p><a href="${adminUrl}" style="display:inline-block;margin-top:12px;background:#a12e3d;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none">Admin-Portal öffnen</a></p>`
+      `<p>${what}</p><p><a href="${adminUrl}" style="display:inline-block;margin-top:12px;background:#3b2318;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none">Admin-Portal öffnen</a></p>`
     ),
   });
   return { sent: true };

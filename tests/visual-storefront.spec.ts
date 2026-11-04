@@ -15,7 +15,7 @@ async function settle(page: Page) {
 test.describe("visual", () => {
   test.beforeEach(async ({ page }) => {
     // The notice is dismissed so it doesn't cover the page in screenshots.
-    await page.addInitScript(() => localStorage.setItem("almadina_cookie_notice_ack", "1"));
+    await page.addInitScript(() => localStorage.setItem("horseed_cookie_notice_ack", "1"));
   });
 
   test("homepage hero", async ({ page }) => {

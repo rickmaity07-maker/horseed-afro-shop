@@ -29,7 +29,7 @@ export default function SlotsPage() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  // Bulk generator — defaults match the shop's Mon–Sat 07:00–20:00 hours.
+  // Bulk generator — defaults match the shop's Mon–Sat 09:00–20:00 hours.
   const [fromDate, setFromDate] = useState(today());
   const [days, setDays] = useState(14);
   const [capacity, setCapacity] = useState(8);

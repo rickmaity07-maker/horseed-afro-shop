@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 
 type Language = "de" | "en";
 
-const STORAGE_KEY = "almadina_language";
+const STORAGE_KEY = "horseed_language";
 
 type LanguageContextValue = {
   language: Language;

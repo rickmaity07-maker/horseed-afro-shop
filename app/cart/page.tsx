@@ -7,7 +7,7 @@ import { getCart, type CartIdentity } from "@/lib/cart";
 import { getStoreSettings } from "@/lib/settings";
 import { CartView } from "@/app/components/CartView";
 
-const GUEST_COOKIE_NAME = "almadina_guest_cart";
+const GUEST_COOKIE_NAME = "horseed_guest_cart";
 
 export default async function CartPage() {
   const session = await getCustomerSession();

@@ -5,7 +5,7 @@ import { verifyEmailCode } from "@/lib/email-verification";
 import { mergeGuestCartIntoUser } from "@/lib/cart";
 import { rateLimit, clientIp } from "@/lib/rate-limit";
 
-const GUEST_CART_COOKIE_NAME = "almadina_guest_cart";
+const GUEST_CART_COOKIE_NAME = "horseed_guest_cart";
 
 // Two callers:
 //  - a logged-in customer confirming their address ({ code }), and

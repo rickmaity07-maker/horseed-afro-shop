@@ -4,13 +4,16 @@ function cloudinaryPrefix(): string | null {
   return cloud ? `https://res.cloudinary.com/${cloud}/image/upload/` : null;
 }
 
+/** Shown for products without a photo: the camel logo on sand. */
+export const PLACEHOLDER_IMAGE = "/images/placeholder.jpg";
+
 /**
  * Turns a stored Cloudinary URL into a resized image served through our own domain
  * (/img/..., proxied in next.config.ts), so visitors never connect to Cloudinary directly.
- * Other URLs are returned unchanged.
+ * Other URLs are returned unchanged; a missing photo becomes the placeholder.
  */
 export function sizedImage(url: string | null | undefined, width: number): string {
-  if (!url) return "";
+  if (!url) return PLACEHOLDER_IMAGE;
   const prefix = cloudinaryPrefix();
   if (!prefix || !url.startsWith(prefix)) return url;
   // Drop any transformation already in the stored URL ("f_auto,q_auto/") and set our own.

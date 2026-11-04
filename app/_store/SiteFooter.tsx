@@ -11,21 +11,21 @@ export function SiteFooter({ t }: { t: Translate }) {
         <div className="footer-main">
           <div>
             <a href="#top" className="footer-logo-wrap">
-              <img src="/logo.png" alt="Al-Madina Markt logo" className="footer-logo" />
+              <img src="/logo.png" alt="Horseed Afro Shop logo" className="footer-logo" />
               <span className="header-logo-text">
-                <b>al-madina</b>
-                <small>market · seit 1998</small>
+                <b>Horseed</b>
+                <small>Afro Shop</small>
               </span>
             </a>
             <p className="footer-note">
-              {t("Arabische, türkische & mediterrane Lebensmittel und Halal-Fleisch für Ihren Alltag.", "Arabic, Turkish & Mediterranean groceries and halal meat for your everyday table.")}
+              {t("Lebensmittel · Haushaltsartikel · Kleider & Anzüge · Kosmetikartikel", "Groceries · Household goods · Clothes & suits · Cosmetics")}
             </p>
           </div>
           <div className="footer-links">
             <div>
               <b>{t("Entdecken", "Discover")}</b>
               <a href="#shop">Shop</a>
-              <a href="#fresh">{t("Täglich frisch", "Fresh daily")}</a>
+              <a href="#fresh">{t("Kosmetik & Parfum", "Cosmetics & perfume")}</a>
               <a href="#story">{t("Unsere Geschichte", "Our story")}</a>
             </div>
             <div>
@@ -36,9 +36,9 @@ export function SiteFooter({ t }: { t: Translate }) {
               <a href={PHONE_LINK}>{t("Anrufen", "Call")}</a>
               <a href="#visit">{t("Öffnungszeiten", "Opening hours")}</a>
               <span className="footer-hours">
-                {t("Mo–Sa 07:00–20:00", "Mon–Sat 07:00–20:00")}
+                {t("Mo–Sa 09:00–20:00", "Mon–Sat 09:00–20:00")}
                 <br />
-                {t("So geschlossen", "Sun closed")}
+                {t("So. & Feiertage geschlossen", "Sun & holidays closed")}
               </span>
             </div>
             <div>

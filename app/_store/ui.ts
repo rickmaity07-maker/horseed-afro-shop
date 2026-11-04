@@ -1,19 +1,17 @@
 // Small display helpers shared by storefront components.
+import { PLACEHOLDER_IMAGE } from "@/lib/images";
 import { STORE } from "@/lib/store-info";
 
 export const MAP_URL = STORE.mapUrl;
 export const PHONE = STORE.phoneDisplay;
 export const PHONE_LINK = `tel:${STORE.phoneE164}`;
 
-/** Swaps a missing product photo for the store logo instead of a broken-image icon. */
+/** Swaps a photo that fails to load for the camel-on-sand placeholder instead of a broken-image icon. */
 export function imageFallback(e: React.SyntheticEvent<HTMLImageElement>) {
   const img = e.currentTarget;
   if (img.dataset.fallback) return;
   img.dataset.fallback = "1";
-  img.src = "/logo.png";
-  img.style.objectFit = "contain";
-  img.style.padding = "18%";
-  img.style.background = "#f3efe6";
+  img.src = PLACEHOLDER_IMAGE;
 }
 
 export function slotLabel(slot: { date: string; start: string; end: string }, language: string) {

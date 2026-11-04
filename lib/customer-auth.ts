@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { signToken, verifyToken } from "./tokens";
 import { prisma } from "./prisma";
 
-const COOKIE_NAME = "almadina_customer_session";
+const COOKIE_NAME = "horseed_customer_session";
 
 type CustomerTokenPayload = {
   userId: string;

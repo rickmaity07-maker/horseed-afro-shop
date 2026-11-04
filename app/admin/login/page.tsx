@@ -52,9 +52,9 @@ export default function AdminLoginPage() {
     <main className="min-h-screen flex items-center justify-center bg-[#f8f7f3] px-4">
       <form onSubmit={handleSubmit} className="w-full max-w-sm bg-white rounded-2xl shadow-xl border border-black/5 p-8">
         <div className="flex items-center gap-3 mb-6">
-          <img src="/logo.png" alt="Al-Madina" className="w-12 h-14 object-contain" />
+          <img src="/logo.png" alt="Horseed Afro Shop" className="w-12 h-14 object-contain" />
           <div>
-            <div className="font-serif text-lg font-medium">Al-Madina Admin</div>
+            <div className="font-serif text-lg font-medium">Horseed Admin</div>
             <div className="text-xs text-black/60">{t("Store-Verwaltungsportal", "Store management portal")}</div>
           </div>
         </div>
@@ -66,7 +66,7 @@ export default function AdminLoginPage() {
           autoComplete="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full mb-4 rounded-lg border border-black/10 px-3 py-2 text-sm outline-none focus:border-[#a12e3d]"
+          className="w-full mb-4 rounded-lg border border-black/10 px-3 py-2 text-sm outline-none focus:border-[#3b2318]"
           autoFocus
           required
         />
@@ -79,7 +79,7 @@ export default function AdminLoginPage() {
           autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-5 rounded-lg border border-black/10 px-3 py-2 text-sm outline-none focus:border-[#a12e3d]"
+          className="w-full mb-5 rounded-lg border border-black/10 px-3 py-2 text-sm outline-none focus:border-[#3b2318]"
           required
         />
 
@@ -87,7 +87,7 @@ export default function AdminLoginPage() {
 
         <button
           disabled={loading}
-          className="w-full flex items-center justify-center gap-2 rounded-lg bg-linear-to-br from-[#a12e3d] to-[#7a1a26] text-white font-semibold py-2.5 text-sm disabled:opacity-60"
+          className="w-full flex items-center justify-center gap-2 rounded-lg bg-linear-to-br from-[#3b2318] to-[#1f120d] text-white font-semibold py-2.5 text-sm disabled:opacity-60"
         >
           <Lock size={15} /> {loading ? t("Anmeldung läuft…", "Signing in…") : t("Anmelden", "Sign in")}
         </button>

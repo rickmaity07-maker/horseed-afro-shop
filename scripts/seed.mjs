@@ -14,16 +14,46 @@ if (existsSync(".env")) {
   }
 }
 
-const IMG = (id) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=800&q=80`;
+// Bundled photos in /public/images/somali (Unsplash licence). Products without one show the camel placeholder
+// until the owner uploads a photo in the admin. Prices and stock are starting values for the owner to correct.
+const IMG = (name) => (name ? `/images/somali/${name}.jpg` : null);
+
+// The four ranges on the shop sign: Lebensmittel · Haushaltsartikel · Kleider & Anzüge · Kosmetikartikel.
+// sizes: [label, price €, stock]. Clothes use clothing sizes as variants.
+const CLOTHES = (price, stock = 4) => ["S", "M", "L", "XL", "XXL"].map((s) => [s, price, stock]);
+const ONE_SIZE = (price, stock = 10) => [["Einheitsgröße", price, stock]];
 
 const CATALOG = [
-  { category: "Obst & Gemüse", name: "Tomaten", tags: ["Frisch"], unit: "pro kg", img: "photo-1592924357228-91a4daadcfea", sizes: [["1 kg", 2.49, 60]] },
-  { category: "Bäckerei", name: "Fladenbrot", tags: ["Frisch", "Vegan"], img: "photo-1593504049359-74330189a345", sizes: [["1 Stück", 1.29, 80], ["3 Stück", 3.49, 40]] },
-  { category: "Vorratskammer", name: "Tahini", tags: ["Vegan"], img: "photo-1511690078903-71dc5a49f5e3", sizes: [["300 g", 4.49, 30]] },
-  { category: "Gewürze", name: "Za'atar", tags: ["Vegan"], img: "photo-1596040033229-a9821ebd058d", sizes: [["150 g", 3.99, 25]] },
-  { category: "Fleisch & Geflügel", name: "Rindersteak", tags: ["Halal"], unit: "pro kg", img: "photo-1603048297172-c92544798d5a", sizes: [["1 kg", 24.9, 10]], old: 27.9 },
-  { category: "Fleisch & Geflügel", name: "Hähnchenbrust", tags: ["Halal"], unit: "pro kg", img: "photo-1604503468506-a8da13d82791", sizes: [["500 g", 5.49, 20], ["1 kg", 9.99, 15]] },
-];
+  { category: "Reis, Mehl & Pasta", name: "Basmatireis", sizes: [["5 kg", 11.99, 30]], old: 13.99 },
+  { category: "Reis, Mehl & Pasta", name: "Spaghetti", sizes: [["500 g", 1.29, 60]] },
+  { category: "Reis, Mehl & Pasta", name: "Sorghummehl (Bur Haruur)", sizes: [["1 kg", 3.49, 25]] },
+  { category: "Gewürze & Tee", name: "Xawaash Gewürzmischung", img: "xawaash", sizes: [["200 g", 4.49, 40]] },
+  { category: "Gewürze & Tee", name: "Grüner Kardamom (Heyl)", sizes: [["100 g", 4.99, 30]] },
+  { category: "Gewürze & Tee", name: "Schwarzer Tee, lose (Shaah)", sizes: [["500 g", 3.99, 40]] },
+  { category: "Brot, Datteln & Snacks", name: "Canjeero", img: "canjeero", sizes: [["10 Stück", 3.99, 20]] },
+  { category: "Brot, Datteln & Snacks", name: "Sambuusa, tiefgekühlt", img: "sambuusa", sizes: [["12 Stück", 6.49, 15]], old: 7.49 },
+  { category: "Brot, Datteln & Snacks", name: "Medjool Datteln", img: "dates", sizes: [["1 kg", 8.99, 20]], old: 10.99 },
+  { category: "Fleisch & Milch", name: "Ziegenfleisch (Hilib Ari)", unit: "pro kg", img: "cat-meat", sizes: [["1 kg", 14.99, 10]] },
+  { category: "Fleisch & Milch", name: "Kamelmilch (Caano Geel)", img: "camel", sizes: [["500 ml", 5.49, 12]] },
+  { category: "Fleisch & Milch", name: "Ghee (Subag)", sizes: [["500 g", 7.99, 15]] },
+
+  { category: "Haushaltsartikel", name: "Uunsi Räucherwerk", img: "uunsi", sizes: [["100 g", 6.49, 25]] },
+  { category: "Haushaltsartikel", name: "Dabqaad Räuchergefäß aus Ton", sizes: [["1 Stück", 12.99, 8]] },
+  { category: "Haushaltsartikel", name: "Thermoskanne", sizes: [["1,5 L", 14.99, 10], ["2 L", 17.99, 6]] },
+  { category: "Haushaltsartikel", name: "Kochtopf, Aluminium", sizes: [["24 cm", 19.99, 6], ["28 cm", 24.99, 5]] },
+
+  { category: "Kosmetik & Parfum", name: "Oud Parfum", sizes: [["100 ml", 24.99, 12]] },
+  { category: "Kosmetik & Parfum", name: "Duftöl (Attar)", sizes: [["12 ml", 7.99, 20]] },
+  { category: "Kosmetik & Parfum", name: "Henna-Pulver", sizes: [["100 g", 3.49, 30]] },
+  { category: "Kosmetik & Parfum", name: "Sheabutter", sizes: [["250 g", 6.99, 15]] },
+  { category: "Kosmetik & Parfum", name: "Haaröl", sizes: [["200 ml", 5.99, 15]] },
+
+  { category: "Kleider & Anzüge", name: "Dirac (Damenkleid)", sizes: CLOTHES(39.9) },
+  { category: "Kleider & Anzüge", name: "Garbasaar (Schal)", sizes: ONE_SIZE(14.9) },
+  { category: "Kleider & Anzüge", name: "Macawis (Herren-Wickelrock)", sizes: ONE_SIZE(19.9) },
+  { category: "Kleider & Anzüge", name: "Khamiis (Herrengewand)", sizes: CLOTHES(34.9) },
+  { category: "Kleider & Anzüge", name: "Herrenanzug, zweiteilig", sizes: ["46", "48", "50", "52", "54"].map((s) => [s, 129, 2]) },
+].map((item) => ({ tags: [], ...item }));
 
 const slug = (s) =>
   s.toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");

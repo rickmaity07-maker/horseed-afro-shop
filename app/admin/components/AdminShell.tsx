@@ -31,7 +31,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
   }, [pathname]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("almadina_admin_sound");
+    const saved = localStorage.getItem("horseed_admin_sound");
     if (saved === "on") {
       soundOnRef.current = true;
       setSoundOn(true);
@@ -52,9 +52,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
             audioRef.current.currentTime = 0;
             audioRef.current.play().catch(() => {});
           }
-          window.dispatchEvent(new CustomEvent("almadina:new-order", { detail: data }));
+          window.dispatchEvent(new CustomEvent("horseed:new-order", { detail: data }));
         } else if (data.type === "order_updated") {
-          window.dispatchEvent(new CustomEvent("almadina:order-updated", { detail: data }));
+          window.dispatchEvent(new CustomEvent("horseed:order-updated", { detail: data }));
         }
       } catch {
         /* ignore malformed event */
@@ -67,7 +67,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
     const next = !soundOn;
     setSoundOn(next);
     soundOnRef.current = next;
-    localStorage.setItem("almadina_admin_sound", next ? "on" : "off");
+    localStorage.setItem("horseed_admin_sound", next ? "on" : "off");
     if (next && audioRef.current) {
       // Unlock autoplay: browsers require a real user gesture before audio can play.
       // This click IS that gesture, so we play+immediately allow future auto-plays.
@@ -109,14 +109,14 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
     <div className="min-h-screen bg-[#f4f3ee] lg:flex" translate="no">
       <audio ref={audioRef} src="/notification.wav" preload="auto" />
       {flash && (
-        <div className="fixed inset-0 pointer-events-none z-[999] ring-8 ring-[#a12e3d]/40 animate-pulse" />
+        <div className="fixed inset-0 pointer-events-none z-[999] ring-8 ring-[#3b2318]/40 animate-pulse" />
       )}
 
       {/* Mobile top bar — the sidebar below becomes an off-canvas drawer under lg */}
       <div className="lg:hidden flex items-center justify-between bg-white border-b border-black/5 px-4 py-3 sticky top-0 z-40">
         <a href="/admin" className="flex items-center gap-2">
-          <img src="/logo.png" alt="Al-Madina" className="w-8 h-10 object-contain" />
-          <div className="font-serif text-base font-medium leading-tight">Al-Madina Admin</div>
+          <img src="/logo.png" alt="Horseed Afro Shop" className="w-8 h-10 object-contain" />
+          <div className="font-serif text-base font-medium leading-tight">Horseed Admin</div>
         </a>
         <button
           onClick={() => setNavOpen(true)}
@@ -135,9 +135,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
           >
             <div className="flex items-center justify-between mb-6">
               <a href="/admin" className="flex items-center gap-2">
-                <img src="/logo.png" alt="Al-Madina" className="w-10 h-12 object-contain" />
+                <img src="/logo.png" alt="Horseed Afro Shop" className="w-10 h-12 object-contain" />
                 <div>
-                  <div className="font-serif text-base font-medium leading-tight">Al-Madina</div>
+                  <div className="font-serif text-base font-medium leading-tight">Horseed</div>
                   <div className="text-[10px] uppercase tracking-wider text-black/40">Admin</div>
                 </div>
               </a>
@@ -167,9 +167,9 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
       <aside className="hidden lg:flex w-60 shrink-0 bg-white border-r border-black/5 flex-col p-5 sticky top-0 h-screen">
         <a href="/admin" className="flex items-center gap-2 mb-8">
-          <img src="/logo.png" alt="Al-Madina" className="w-10 h-12 object-contain" />
+          <img src="/logo.png" alt="Horseed Afro Shop" className="w-10 h-12 object-contain" />
           <div>
-            <div className="font-serif text-base font-medium leading-tight">Al-Madina</div>
+            <div className="font-serif text-base font-medium leading-tight">Horseed</div>
             <div className="text-[10px] uppercase tracking-wider text-black/40">Admin</div>
           </div>
         </a>
@@ -223,7 +223,7 @@ function AdminNavContents({
           <div className="text-sm font-medium truncate">{me.username}</div>
           <span
             className={`inline-block text-[10px] uppercase tracking-wider rounded-full px-2 py-0.5 mt-1 ${
-              isOwner ? "bg-[#a12e3d]/10 text-[#a12e3d]" : "bg-black/5 text-black/50"
+              isOwner ? "bg-[#3b2318]/10 text-[#3b2318]" : "bg-black/5 text-black/50"
             }`}
           >
             {me.role}
@@ -237,7 +237,7 @@ function AdminNavContents({
             key={href}
             href={href}
             className={`flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-medium transition ${
-              pathname === href ? "bg-[#a12e3d] text-white" : "text-black/70 hover:bg-black/5"
+              pathname === href ? "bg-[#3b2318] text-white" : "text-black/70 hover:bg-black/5"
             }`}
           >
             <Icon size={16} /> {label}

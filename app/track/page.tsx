@@ -54,7 +54,7 @@ export default function TrackOrderPage() {
               placeholder={t("Bestellnummer (z. B. AM-20260905-4F2K)", "Order number (e.g. AM-20260905-4F2K)")}
               value={orderNumber}
               onChange={(e) => setOrderNumber(e.target.value)}
-              className="w-full mb-3 rounded-lg border border-black/10 px-3 py-2 outline-none focus:border-[#a12e3d]"
+              className="w-full mb-3 rounded-lg border border-black/10 px-3 py-2 outline-none focus:border-[#3b2318]"
             />
             <input
               required
@@ -62,10 +62,10 @@ export default function TrackOrderPage() {
               placeholder={t("E-Mail von der Bestellung", "Email used at checkout")}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full mb-4 rounded-lg border border-black/10 px-3 py-2 outline-none focus:border-[#a12e3d]"
+              className="w-full mb-4 rounded-lg border border-black/10 px-3 py-2 outline-none focus:border-[#3b2318]"
             />
             {error && <div className="checkout-error mb-4">{error}</div>}
-            <button className="primary-btn full w-full flex justify-center items-center gap-2 py-2.5 rounded-lg bg-[#a12e3d] text-white" disabled={loading}>
+            <button className="primary-btn full w-full flex justify-center items-center gap-2 py-2.5 rounded-lg bg-[#3b2318] text-white" disabled={loading}>
               <Search size={16} /> {loading ? t("Suche läuft…", "Searching…") : t("Bestellung verfolgen", "Track order")}
             </button>
           </form>
@@ -80,12 +80,12 @@ export default function TrackOrderPage() {
                 {order.status === "PLACED" || order.status === "PACKED"
                   ? t("Noch nicht unterwegs? Sie können die Bestellung jetzt noch stornieren: ", "Not on its way yet? You can still cancel the order: ")
                   : t("Sie möchten vom Kauf zurücktreten? ", "Want to withdraw from this purchase? ")}
-                <a href={`/widerruf?order=${encodeURIComponent(order.orderNumber)}`} style={{ color: "#a12e3d", fontWeight: 700, textDecoration: "underline" }}>
+                <a href={`/widerruf?order=${encodeURIComponent(order.orderNumber)}`} style={{ color: "#3b2318", fontWeight: 700, textDecoration: "underline" }}>
                   {t("Vertrag widerrufen", "Withdraw from contract")}
                 </a>
               </p>
             )}
-            <button className="text-btn mt-6 font-medium text-[#a12e3d]" onClick={() => setOrder(null)}>
+            <button className="text-btn mt-6 font-medium text-[#3b2318]" onClick={() => setOrder(null)}>
               {t("Andere Bestellung verfolgen", "Track another order")}
             </button>
           </div>

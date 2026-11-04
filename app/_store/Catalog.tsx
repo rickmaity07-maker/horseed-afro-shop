@@ -92,7 +92,7 @@ export function Catalog(props: Props) {
     <section id="shop" className="reveal mx-auto max-w-7xl px-5 py-16 lg:px-8">
       <div className="section-head">
         <div>
-          <span className="eyebrow">{t("Die Al-Madina Auswahl", "The Al-Madina selection")}</span>
+          <span className="eyebrow">{t("Das Horseed-Sortiment", "The Horseed range")}</span>
           <h2>
             {t("Gutes Essen,", "Good food,")} <em>{t("einfach schön.", "simply beautiful.")}</em>
           </h2>

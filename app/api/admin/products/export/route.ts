@@ -105,7 +105,7 @@ export async function GET() {
   return new NextResponse(csv, {
     headers: {
       "Content-Type": "text/csv; charset=utf-8",
-      "Content-Disposition": `attachment; filename="al-madina-produkte-${date}.csv"`,
+      "Content-Disposition": `attachment; filename="horseed-produkte-${date}.csv"`,
       "Cache-Control": "no-store",
     },
   });

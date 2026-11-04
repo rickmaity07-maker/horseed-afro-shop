@@ -6,7 +6,7 @@ import { decodeJwt } from "jose";
  * after the visitor clicks the button, so nothing reaches Google beforehand.
  */
 
-export const GOOGLE_STATE_COOKIE = "almadina_google_state";
+export const GOOGLE_STATE_COOKIE = "horseed_google_state";
 
 export function googleLoginEnabled(): boolean {
   return Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);

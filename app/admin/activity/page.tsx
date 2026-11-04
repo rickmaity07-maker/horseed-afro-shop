@@ -74,7 +74,7 @@ export default function ActivityPage() {
           <button
             key={key || "all"}
             onClick={() => setEntity(key)}
-            className={`px-3 py-1.5 rounded-full text-sm border ${entity === key ? "bg-[#a12e3d] text-white border-[#a12e3d]" : "bg-white border-black/10 text-black/60"}`}
+            className={`px-3 py-1.5 rounded-full text-sm border ${entity === key ? "bg-[#3b2318] text-white border-[#3b2318]" : "bg-white border-black/10 text-black/60"}`}
           >
             {t(de, en)}
           </button>

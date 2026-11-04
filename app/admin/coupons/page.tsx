@@ -153,7 +153,7 @@ export default function CouponsPage() {
               <div className="flex-1 min-w-[200px]">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="font-mono font-bold text-base">{c.code}</span>
-                  <span className="text-sm font-semibold text-[#a12e3d]">{describe(c)}</span>
+                  <span className="text-sm font-semibold text-[#3b2318]">{describe(c)}</span>
                   <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${style}`}>{label}</span>
                 </div>
                 {c.description && <div className="text-sm text-black/60 mt-0.5">{c.description}</div>}

@@ -5,7 +5,7 @@ test("visit section shows the real store details from the Google listing", async
   await page.goto("/");
   const visit = page.locator("#visit");
   await expect(visit.getByText("سوبر ماركت وملحمة المدينة")).toBeVisible();
-  await expect(visit.getByText("Landwehrstraße 12").first()).toBeVisible();
+  await expect(visit.getByText("Schultesstraße 4").first()).toBeVisible();
   await expect(visit.getByText(/26QC\+WJ/)).toBeVisible();
   await expect(visit.getByText("Abholung am Straßenrand")).toBeVisible();
   // Mon–Sat 07–20, Sunday closed — one row per weekday.

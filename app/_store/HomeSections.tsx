@@ -1,5 +1,6 @@
-// The static marketing sections of the home page: hero, benefits, fresh produce, story, visit.
-import { ArrowRight, Beef, Check, Clock3, Leaf, MapPin, Navigation, Phone, Sparkles, Truck } from "lucide-react";
+// The static marketing sections of the home page: hero, ranges, cosmetics band, story, visit.
+// Look and wording follow the Horseed Afro Shop sign: espresso band, sand card, camel in an orange sun.
+import { ArrowRight, Check, CookingPot, MapPin, Navigation, Phone, Shirt, ShoppingBasket, Sparkles } from "lucide-react";
 import { OPENING_HOURS, STORE, type storeOpenState } from "@/lib/store-info";
 import type { Translate } from "./types";
 import { MAP_URL, PHONE, PHONE_LINK } from "./ui";
@@ -22,91 +23,79 @@ function OpenBadge({ openState, long, t }: { openState: NonNullable<OpenState>; 
   );
 }
 
+/** The four ranges printed on the shop sign. */
+const RANGES = [
+  { key: "food", de: "Lebensmittel", en: "Groceries", icon: ShoppingBasket },
+  { key: "home", de: "Haushaltsartikel", en: "Household goods", icon: CookingPot },
+  { key: "clothing", de: "Kleider & Anzüge", en: "Clothes & suits", icon: Shirt },
+  { key: "beauty", de: "Kosmetikartikel", en: "Cosmetics", icon: Sparkles },
+] as const;
+
 export function Hero({ openState, t }: { openState: OpenState; t: Translate }) {
   return (
     <>
       <section id="top" className="hero reveal mx-auto grid max-w-7xl gap-6 px-5 pb-8 pt-6 lg:grid-cols-[1.08fr_.92fr] lg:px-8 lg:pt-10">
         <div className="hero-copy">
-          <div className="eyebrow">
-            <Sparkles size={15} /> {t("Authentischer Geschmack. Jeden Tag frisch.", "Authentic taste. Fresh every day.")}
-          </div>
+          <div className="eyebrow">{t("Afro Shop in Schweinfurt", "Afro shop in Schweinfurt")}</div>
           <h1>
-            {t("Ihr arabischer & türkischer Markt,", "Your Arabic & Turkish market,")}
+            {t("Alles von zu Hause,", "Everything from home,")}
             <br />
-            <em>{t("ganz in Ihrer Nähe.", "right around the corner.")}</em>
+            <em>{t("mitten in Schweinfurt.", "right here in Schweinfurt.")}</em>
           </h1>
           <p>
             {t(
-              "Supermarkt und Halal-Metzgerei unter einem Dach: frisches Fleisch, Gemüse, warmes Brot, Olivenöl, Gewürze, Meze und Süßigkeiten – sorgfältig für Ihren Alltag ausgewählt.",
-              "Supermarket and halal butcher under one roof: fresh meat, vegetables, warm bread, olive oil, spices, meze and sweets — chosen for your everyday table."
+              "Somalische und afrikanische Lebensmittel, Haushaltsartikel, Kosmetik und Oud-Parfums, Kleider und Anzüge. Online bestellen und im Laden abholen oder liefern lassen.",
+              "Somali and African groceries, household goods, cosmetics and oud perfumes, dresses and suits. Order online, then collect in store or have it delivered."
             )}
           </p>
           <div className="hero-actions">
             <a href="#shop" className="primary-btn">
-              {t("Markt entdecken", "Explore the market")} <ArrowRight size={18} />
+              {t("Sortiment ansehen", "Browse the shop")} <ArrowRight size={18} />
             </a>
             <a href={MAP_URL} target="_blank" rel="noreferrer" className="text-btn">
-              <MapPin size={17} /> {t("Unser Geschäft finden", "Find our store")}
+              <MapPin size={17} /> {STORE.street}
             </a>
           </div>
           <div className="trust-row">
             {openState && <OpenBadge openState={openState} long t={t} />}
             <span>
-              <Check /> {t("Täglich frisch", "Fresh daily")}
+              <Check /> {t("Abholung im Laden", "Click & collect")}
             </span>
             <span>
-              <Check /> {t("Halal-Metzgerei", "Halal butcher")}
+              <Check /> {t("Lieferung in Schweinfurt", "Delivery in Schweinfurt")}
             </span>
             <span>
-              <Check /> {t("Familiengeführt", "Family run")}
+              <Check /> {t("Bar bezahlen", "Pay cash")}
             </span>
           </div>
         </div>
         <div className="hero-image-wrap">
-          <img src="/images/hero-market.jpg" alt="Fresh vegetables at a market" className="hero-image" />
+          <img src="/images/somali/mat-spices.jpg" alt={t("Gewürze in geflochtenen Schalen auf einer somalischen Matte", "Spices in woven bowls on a Somali mat")} className="hero-image" />
           <div className="hero-card">
-            <span>{t("Heute auf dem Markt", "In the market today")}</span>
+            <span>{t("Frisch im Laden", "In the shop now")}</span>
             <b>
-              {t("Frische Produkte", "Fresh produce")}
+              {t("Xawaash, Canjeero", "Xawaash, canjeero")}
               <br />
-              {t("ab €1,19", "from €1.19")}
+              {t("& Oud-Parfums", "& oud perfumes")}
             </b>
-            <a href="#fresh">
-              {t("Frische entdecken", "Discover fresh")} <ArrowRight size={14} />
+            <a href="#shop">
+              {t("Zum Sortiment", "See the range")} <ArrowRight size={14} />
             </a>
           </div>
-          <div className="hero-stamp">
-            <Leaf size={22} />
-            <span>
-              GOOD
-              <br />
-              <b>FOOD</b>
-            </span>
+          <div className="hero-stamp" aria-hidden>
+            <img src="/logo.png" alt="" style={{ width: 70, height: "auto" }} />
           </div>
         </div>
       </section>
 
-      <section className="benefits reveal">
-        <div>
-          <Truck />
-          <b>{t("Lokale Lieferung", "Local delivery")}</b>
-          <span>{t("Schnell & sorgfältig", "Fast & careful")}</span>
-        </div>
-        <div>
-          <Leaf />
-          <b>{t("Frische Produkte", "Fresh produce")}</b>
-          <span>{t("Täglich ausgewählt", "Selected daily")}</span>
-        </div>
-        <div>
-          <Beef />
-          <b>{t("Halal-Metzgerei", "Halal butcher")}</b>
-          <span>{t("Frisch an der Theke", "Fresh at the counter")}</span>
-        </div>
-        <div>
-          <Clock3 />
-          <b>{t("Mo–Sa geöffnet", "Open Mon–Sat")}</b>
-          <span>07:00 — 20:00</span>
-        </div>
+      <section className="benefits reveal" aria-label={t("Unser Sortiment", "What we sell")}>
+        {RANGES.map(({ key, de, en, icon: Icon }) => (
+          <div key={key}>
+            <Icon />
+            <b>{t(de, en)}</b>
+            <span>{t("Im Laden und online", "In store and online")}</span>
+          </div>
+        ))}
       </section>
     </>
   );
@@ -117,27 +106,27 @@ export function FreshBand({ t }: { t: Translate }) {
     <section id="fresh" className="feature-band reveal">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-16 lg:grid-cols-2 lg:px-8 lg:py-20">
         <div>
-          <span className="eyebrow light">{t("Jeden Morgen frisch", "Fresh every morning")}</span>
+          <span className="eyebrow light">{t("Kosmetik & Parfum", "Cosmetics & perfume")}</span>
           <h2>
-            {t("Bringen Sie den Markt", "Bring the market")}
+            {t("Oud, Bakhoor", "Oud, bakhoor")}
             <br />
-            <em>{t("in Ihre Küche.", "into your kitchen.")}</em>
+            <em>{t("und Pflege.", "and care.")}</em>
           </h2>
           <p>
             {t(
-              "Frische Kräuter, reife Tomaten, knackige Gurken und saisonales Obst – ausgewählt, damit Kochen jeden Tag Freude macht.",
-              "Fresh herbs, ripe tomatoes, crisp cucumbers and seasonal fruit — chosen so cooking is a joy every day."
+              "Arabische Parfums, Duftöle, Uunsi-Räucherwerk, Haar- und Hautpflege: eine ganze Wand voll im Laden, eine Auswahl online.",
+              "Arabian perfumes, fragrance oils, uunsi incense, hair and skin care: a whole wall of it in the shop, a selection online."
             )}
           </p>
           <a href="#shop" className="light-btn">
-            {t("Frische Produkte kaufen", "Shop fresh produce")} <ArrowRight size={17} />
+            {t("Kosmetik ansehen", "Shop cosmetics")} <ArrowRight size={17} />
           </a>
         </div>
         <div className="feature-photo">
-          <img src="/images/feature-produce.jpg" alt="Fresh produce market display" />
+          <img src="/images/somali/uunsi.jpg" alt={t("Uunsi-Räucherwerk", "Uunsi incense")} />
           <div>
-            <b>{t("Sorgfältig ausgewählt.", "Carefully chosen.")}</b>
-            <span>{t("Qualität, die man sieht.", "Quality you can see.")}</span>
+            <b>{t("Uunsi & Bakhoor", "Uunsi & bakhoor")}</b>
+            <span>{t("Für Zuhause und Feste", "For the home and celebrations")}</span>
           </div>
         </div>
       </div>
@@ -149,24 +138,30 @@ export function Story({ t }: { t: Translate }) {
   return (
     <section id="story" className="story reveal mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-[.9fr_1.1fr] lg:px-8">
       <div className="story-photo">
-        <img src="/images/story-shelves.jpg" alt="Grocery store shelves" />
+        <img src="/images/horseed-shopfront.jpg" alt={t("Schaufenster von Horseed Afro Shop mit Öffnungszeiten und Parfumregal", "Horseed Afro Shop window with opening hours and a perfume wall")} />
       </div>
       <div className="story-copy">
-        <span className="eyebrow">{t("Unsere kleine Ecke des Orients", "Our little corner of the Orient")}</span>
+        <span className="eyebrow">{t("Über uns", "About us")}</span>
         <h2>
-          {t("Ein Markt rund um", "A market built around")} <em>{t("die gemeinsame Tafel.", "the shared table.")}</em>
+          {t("Ein Laden für", "One shop for")} <em>{t("die ganze Familie.", "the whole family.")}</em>
         </h2>
         <p>
           {t(
-            "Al-Madina ist ein Nachbarschaftsmarkt für Menschen, die Zutaten, Gastfreundschaft und die kleinen Rituale rund ums Essen schätzen.",
-            "Al-Madina is a neighbourhood market for people who value good ingredients, hospitality, and the small rituals around food."
+            `Horseed Afro Shop in der ${STORE.street} führt, was die afrikanische Gemeinschaft in Schweinfurt im Alltag braucht: vom Basmatireis bis zum Anzug für die Hochzeit.`,
+            `Horseed Afro Shop on ${STORE.street} stocks what Schweinfurt's African community needs every day: from basmati rice to a suit for the wedding.`
           )}
         </p>
-        <div className="quote">
-          <div className="stars">★★★★★</div>
-          <p>{t("„Eine warme, großzügige Auswahl arabischer, türkischer und mediterraner Favoriten.“", "“A warm, generous selection of Arabic, Turkish and Mediterranean favourites.”")}</p>
-        </div>
-        <a href={MAP_URL} target="_blank" rel="noreferrer" className="outline-btn">
+        <ul className="quote" style={{ listStyle: "none" }}>
+          {RANGES.map((r) => (
+            <li key={r.key}>
+              <p style={{ margin: "2px 0" }}>{t(r.de, r.en)}</p>
+            </li>
+          ))}
+        </ul>
+        <p>
+          {t("Inhaber", "Owner")}: {STORE.owner}
+        </p>
+        <a href={STORE.directionsUrl} target="_blank" rel="noreferrer" className="outline-btn">
           <MapPin size={17} /> {t("Route planen", "Get directions")}
         </a>
       </div>
@@ -182,11 +177,8 @@ export function Visit({ openState, t }: { openState: OpenState; t: Translate }) 
           <div>
             <span className="eyebrow">{t("Kommen Sie vorbei", "Come visit")}</span>
             <h2>
-              {t("Wir sehen uns bei", "See you at")} <em>Al-Madina.</em>
+              {t("Wir sehen uns bei", "See you at")} <em>Horseed.</em>
             </h2>
-            <p className="store-arabic" dir="rtl" lang="ar">
-              {STORE.arabicName}
-            </p>
             <p>
               {STORE.street}
               <br />
@@ -206,9 +198,6 @@ export function Visit({ openState, t }: { openState: OpenState; t: Translate }) 
               <a href={PHONE_LINK}>
                 <Phone size={17} /> {PHONE}
               </a>
-              <a href={MAP_URL} target="_blank" rel="noreferrer">
-                <MapPin size={17} /> Plus Code: {STORE.plusCode}
-              </a>
             </div>
             <div className="hours">
               <b style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -220,13 +209,16 @@ export function Visit({ openState, t }: { openState: OpenState; t: Translate }) 
                   {t(h.de, h.en)} <strong>{h.open ? `${h.open} — ${h.close}` : t("Geschlossen", "Closed")}</strong>
                 </span>
               ))}
+              <span>
+                {t("Feiertage", "Public holidays")} <strong>{t("Geschlossen", "Closed")}</strong>
+              </span>
             </div>
           </div>
           <div className="map-card">
             <div className="map-grid"></div>
             <div className="pin">
               <MapPin size={26} />
-              <b>Al-Madina</b>
+              <b>Horseed Afro Shop</b>
               <small>{STORE.street}</small>
             </div>
             <a href={MAP_URL} target="_blank" rel="noreferrer" className="map-overlay">

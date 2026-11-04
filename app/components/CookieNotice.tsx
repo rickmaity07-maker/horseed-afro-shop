@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n";
 
-const STORAGE_KEY = "almadina_cookie_notice_ack";
+const STORAGE_KEY = "horseed_cookie_notice_ack";
 
 // This site only sets strictly necessary cookies (login session, shopping
 // cart) — no analytics or marketing cookies, so there's nothing to opt in
