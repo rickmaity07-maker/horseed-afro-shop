@@ -19,6 +19,8 @@ catalogue (`npm run db:seed`) has placeholder prices and stock for the owner to 
 **Storefront** (German by default, English toggle)
 - Catalog with categories, an "Offers" filter, attribute tags (Halal, Vegan, …), search and sorting
 - Sale badges (−%), "only N left" / sold-out states, product detail popup and SEO product pages
+- Prices in German format with price per kg/l, bottle deposit and "inkl. MwSt."; ingredients, allergens and
+  nutrition values on the product page (filled in by the owner in the admin or the spreadsheet import)
 - Basket for guests and accounts (merged on login), free-delivery progress bar, minimum order
 - Checkout: delivery or pickup, bookable time slots, coupon codes, substitution preference, order notes
 - Customer accounts: email verification, password reset, profile and password change, saved addresses,
@@ -32,7 +34,9 @@ catalogue (`npm run db:seed`) has placeholder prices and stock for the owner to 
 - Orders: live updates with sound, search, date range, status tabs, cancel (restocks automatically),
   staff notes, printable packing slip, CSV export, one switch to pause online orders
 - Time slots: generate delivery/pickup windows in bulk, capacity per window, live booking counts
-- Products & stock: search/filters (low stock, sold out, on sale, hidden), inline stock +/−, sizes, tags
+- Products & stock: search/filters (low stock, sold out, on sale, hidden), inline stock +/−, sizes, tags;
+  spreadsheet export/import (the import changes stock by the difference to `bestand_beim_export`, so sales made
+  while the file was open aren't lost)
 - Categories (order, visibility, image), coupons (percent / fixed / free delivery, limits, validity),
   customers with lifetime stats, review moderation, team accounts
 - Analytics: 7/30/90-day revenue vs previous period, peak hours, weekdays, delivery vs pickup,
@@ -50,7 +54,7 @@ npm run dev              # http://localhost:3000  ·  admin: /admin
 ```
 
 Checks: `npm run typecheck`, `npm run lint`, `npm run knip` and `npm run test:unit` (no database needed) run on GitHub
-for every push. Tests (Playwright): `npm run test:e2e` — set `E2E_PORT=3100` if another app already uses port 3000.
+for every push. `TEST_DB=1 npm run test:unit` adds the database tests (throwaway database only). Tests (Playwright): `npm run test:e2e` — set `E2E_PORT=3100` if another app already uses port 3000.
 The e2e tests write to the database in `.env` (they create and delete products), so point it at a test database first.
 
 How it fits together, who may do what, and the security and data rules: **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.

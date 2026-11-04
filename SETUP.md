@@ -66,14 +66,22 @@ tests would run against that other app.
 
 Emails go out over SMTP with Nodemailer (`lib/mailer.ts`). Any provider works:
 
-- **Brevo** or **Resend** (free tiers) — paste their SMTP host/user/password into `.env`.
+- **Brevo** (what this shop uses) or **Resend** (free tiers) — paste their SMTP host/user/password into `.env`.
 - **Gmail / Google Workspace** — create an [App Password](https://myaccount.google.com/apppasswords);
   `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=587`.
 - Your web host's mailbox — ask them for the SMTP settings.
 
+`SMTP_FROM` is required and must be a sender the provider has verified (in Brevo: Senders & IP → Senders).
+There is no fallback to `SMTP_USER`: Brevo's SMTP login is not a valid sender. If you change email provider,
+update the processor list in `/datenschutz` too.
+
 Until SMTP is configured nothing breaks: emails are skipped and logged to the
 server console instead. In development, verification codes and password-reset
 links are printed to the console too.
+
+Customer emails go out in German or English, whichever the customer used the shop in. The order confirmation
+includes the withdrawal notice the law requires. If it can't be sent, the order shows a "please call the
+customer" warning in the admin.
 
 Emails sent: order confirmation (customer), new-order alert (shop), status
 changes incl. "ready for pickup" and cancellation (customer), low-stock alert
@@ -193,5 +201,10 @@ Runs on any Node.js host (VPS, Railway, Render) or Vercel. Notes:
   in `next.config.ts`. API writes from another website are refused (Origin check).
 - Set `NEXT_PUBLIC_SITE_URL` so emails, `sitemap.xml` and `robots.txt` point at
   the real domain.
+- **Vercel does not run migrations.** After a deploy that adds files to `db/migrations/`,
+  run `npm run db:migrate` once with `DATABASE_URL` set to the live database (re-running is safe).
+  It also fills in net quantities from size labels ("500 g"), which the price per kg/l needs.
+- Product photos need the three `CLOUDINARY_*` variables in Vercel (then redeploy): without them the
+  admin can't upload photos and products show the placeholder.
 
 Moving the shop to another owner's accounts (repo, database, photos, email): see [docs/HANDOVER.md](docs/HANDOVER.md).

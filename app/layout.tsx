@@ -48,7 +48,10 @@ export const metadata: Metadata = {
     icon: "/favicon.png",
     apple: "/apple-touch-icon.png",
   },
+  // The home page's own address; every other indexable route sets its own (layouts, product pages).
+  alternates: { canonical: "/" },
   openGraph: {
+    images: [{ url: "/images/horseed-shopfront.jpg", alt: "Schaufenster von Horseed Afro Shop in Schweinfurt" }],
     title: "Horseed Afro Shop, Schweinfurt",
     description: "Lebensmittel, Haushaltsartikel, Kosmetik, Kleider & Anzüge. Abholung oder Lieferung, bar bezahlen.",
     siteName: "Horseed Afro Shop",

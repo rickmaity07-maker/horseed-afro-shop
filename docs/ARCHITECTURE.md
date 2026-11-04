@@ -62,7 +62,27 @@ working at once.
 `POST /api/orders` takes only product variant ids and quantities from the browser. Prices come from the database,
 quantities are whole numbers from 1 to 50, and inside one transaction the stock is decremented only if enough is left,
 coupon limits are re-checked under a row lock, and slot capacity is re-checked under a row lock. Two customers can't
-both buy the last item or the last place in a time slot.
+both buy the last item or the last place in a time slot. A size's bottle deposit (`product_variants.deposit`) is
+copied to the order line and added to the total (`orders.deposit_total`); coupons never discount it.
+
+The basket (`lib/cart.ts`) uses single upsert statements, so quick double clicks can't lose an item; at most 50 of a
+size and 100 different items. A guest basket is merged into the account on login with the same limits.
+
+## Order statuses
+
+`PLACED → PACKED → OUT_FOR_DELIVERY → DELIVERED`, forward only (`ORDER_TRANSITIONS` in `lib/order-utils.ts`); a
+pickup skips `OUT_FOR_DELIVERY`. `CANCELLED` is only possible from `PLACED` or `PACKED` (`cancelOrder`, which also
+restocks). Every change is one conditional update (`status = any(allowed previous statuses)`), so a cancel and a
+status change at the same moment can't both win, and a second tap on "delivered" changes nothing and sends no email.
+Orders still open after 180 days are closed as cancelled by the cleanup job.
+
+## Emails
+
+`lib/mailer.ts`. Customer emails use the order's or account's language (`orders.language`, `users.language`, sent by
+the shop); emails to the shop are German and contain no customer details. Every email has a plain-text part. The
+sender is always `SMTP_FROM`, which must be a sender address verified at the SMTP provider. The order confirmation
+carries the statutory withdrawal notice (§ 312f BGB). If it can't be sent, `orders.confirmation_email_failed` is set
+and the admin order card tells staff to call the customer.
 
 ## Live order feed
 
@@ -84,6 +104,7 @@ and pushes events over Server-Sent Events (`/api/orders/stream`), so it works ac
 | Empty guest carts | 1 day |
 | Guest carts | 90 days after the last change |
 | Contact details on finished orders | 90 days (name and address kept on receipts over €250) |
+| Orders never finished | closed as cancelled after 180 days, then as above |
 | Orders | 8 years (§ 147 AO, § 257 HGB) |
 | Admin activity log | 2 years |
 | Expired or used email codes and reset links | removed |
@@ -96,4 +117,6 @@ this table.
 - `.env` holds `DATABASE_URL`. If it points at the live database, `npm run dev` and `npm run test:e2e` change live
   data (the admin tests create and delete products). Use a separate Neon branch for development and e2e runs.
 - `npm run test:unit` (Vitest, no database), `npm run typecheck`, `npm run lint`, `npm run knip` (unused code).
+- `TEST_DB=1 npm run test:unit` also runs `tests/unit/*-db.test.ts` (basket races, order status races, email-code
+  limits) against `DATABASE_URL`. Only ever point it at a throwaway database: the tests create and delete rows.
 - `.github/workflows/checks.yml` runs those four on every push.
