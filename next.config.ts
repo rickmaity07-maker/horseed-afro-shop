@@ -1,56 +1,32 @@
 import type { NextConfig } from "next";
 
-const dev = process.env.NODE_ENV !== "production";
-// What the page may load. Everything is served from this site, except product photos from Cloudinary
-// and the Vercel preview toolbar. Next.js needs inline scripts for streaming; dev also needs eval.
-const csp = [
-  "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${dev ? " 'unsafe-eval'" : ""} https://vercel.live`,
-  "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://res.cloudinary.com https://vercel.live https://vercel.com",
-  "font-src 'self' data:",
-  `connect-src 'self' https://vercel.live wss://ws-us3.pusher.com${dev ? " ws:" : ""}`,
-  "frame-src https://vercel.live",
-  "worker-src 'self'",
-  "manifest-src 'self'",
-  "object-src 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "frame-ancestors 'none'",
-  ...(dev ? [] : ["upgrade-insecure-requests"]),
-].join("; ");
+// Not a secret: the cloud name is part of every public image URL. It is the same
+// CLOUDINARY_CLOUD_NAME the upload route uses, and is also exposed to lib/images.ts.
+const CLOUDINARY_CLOUD = process.env.CLOUDINARY_CLOUD_NAME?.trim() ?? "";
 
+// The Content-Security-Policy is set per request in middleware.ts (it needs a
+// fresh script nonce each time); the static security headers live here.
 const nextConfig: NextConfig = {
-  cacheComponents: true,
-  partialPrefetching: true,
-  turbopack: {
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  env: { NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME: CLOUDINARY_CLOUD },
+  // Product photos are served through our own domain (/img/...) instead of straight from
+  // Cloudinary, so visitors' browsers (and IP addresses) never contact Cloudinary (GDPR).
+  // Limited to our own Cloudinary account so this can't be used as an open proxy.
+  async rewrites() {
+    if (!CLOUDINARY_CLOUD) return [];
+    return [{ source: "/img/:path*", destination: `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/upload/:path*` }];
   },
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: "/:path*",
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },
           { key: "X-Frame-Options", value: "DENY" },
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "Content-Security-Policy", value: csp },
-          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()" },
-          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
-        ],
-      },
-      {
-        // The service worker must never be served stale, or app updates would not reach installed phones.
-        source: "/sw.js",
-        headers: [
-          { key: "Content-Type", value: "application/javascript; charset=utf-8" },
-          { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
         ],
       },
     ];

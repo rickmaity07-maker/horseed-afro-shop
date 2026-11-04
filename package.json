@@ -1,34 +1,55 @@
 {
-  "name": "qamar-fresh-store",
-  "version": "0.1.0",
+  "name": "al-madina-grocery",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "eslint",
-    "db:setup": "node --env-file-if-exists=.env.local scripts/db-setup.mjs",
-    "images:upload": "node --env-file-if-exists=.env.local scripts/upload-images.mjs"
+    "lint": "eslint .",
+    "postinstall": "prisma generate",
+    "db:migrate": "node scripts/migrate.mjs",
+    "db:seed": "node scripts/seed.mjs",
+    "db:transfer": "node scripts/db-transfer.mjs",
+    "images:copy": "node scripts/copy-images.mjs",
+    "db:rewrite-images": "node scripts/rewrite-image-urls.mjs",
+    "test:e2e": "playwright test",
+    "typecheck": "tsc --noEmit",
+    "knip": "knip",
+    "test:unit": "vitest run"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.2.0",
-    "@phosphor-icons/react": "^2.1.10",
-    "cloudinary": "^2.11.0",
-    "next": "16.4.2",
-    "nodemailer": "^10.1.2",
-    "react": "19.3.0",
-    "react-dom": "19.3.0",
-    "server-only": "^0.0.1"
+    "@prisma/client": "^6.5.0",
+    "@tailwindcss/postcss": "^4.1.13",
+    "bcryptjs": "^2.4.3",
+    "disposable-email-domains": "^1.0.62",
+    "jose": "^6.2.12",
+    "libphonenumber-js": "^1.13.13",
+    "lucide-react": "^0.468.0",
+    "next": "^15.5.3",
+    "nodemailer": "^10.0.16",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.13"
   },
   "devDependencies": {
-    "@tailwindcss/turbopack": "^4",
-    "@types/node": "^20",
-    "@types/nodemailer": "^8.0.2",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.4.2",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@eslint/eslintrc": "^3.3.7",
+    "@playwright/test": "^1.63.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/disposable-email-domains": "^1.0.6",
+    "@types/node": "^24.3.0",
+    "@types/nodemailer": "^6.4.24",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "15.5",
+    "knip": "^6.42.1",
+    "prisma": "^6.5.0",
+    "typescript": "^5.9.2",
+    "vitest": "^4.1.12"
+  },
+  "overrides": {
+    "postcss": "^8.5.29",
+    "deepmerge-ts": "^8.0.2"
   }
 }

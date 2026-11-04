@@ -1,60 +1,49 @@
-# Dalab Fresh
+# Al-Madina Markt — online shop
 
-Online shop for a Somali grocery store in Germany. German, English and Somali; prices in euros;
-same-day delivery or click and collect from branches in Frankfurt, Köln, München and Hamburg.
+Online shop and admin portal for **Al-Madina Markt** (سوبر ماركت وملحمة المدينة),
+an Arabic/Turkish supermarket and halal butcher at Landwehrstraße 12, 97421 Schweinfurt.
 
-Built with Next.js 16 (App Router, Cache Components), Tailwind CSS 4, Neon Postgres, Nodemailer and Cloudinary.
+Next.js 15 (App Router) · React 19 · Tailwind CSS 4 · Postgres (Neon) via Prisma raw SQL · Nodemailer.
+Payment is **cash only**, on delivery or pickup — there is no payment gateway.
 
-## Run locally
+## Features
+
+**Storefront** (German by default, English toggle)
+- Catalog with categories, an "Offers" filter, attribute tags (Halal, Vegan, …), search and sorting
+- Sale badges (−%), "only N left" / sold-out states, product detail popup and SEO product pages
+- Basket for guests and accounts (merged on login), free-delivery progress bar, minimum order
+- Checkout: delivery or pickup, bookable time slots, coupon codes, substitution preference, order notes
+- Customer accounts: email verification, password reset, profile and password change, saved addresses,
+  wishlist, order history with status timeline, reorder, self-service cancellation of new orders
+- Order tracking without login (`/track`), delivery-driver confirmation link (`/deliver/[token]`)
+- Store details from the Google listing: hours with a live "open now" badge, services, Plus Code, directions
+- Impressum, Datenschutz, cookie notice; `robots.txt`, `sitemap.xml`, Product and GroceryStore JSON-LD
+
+**Admin portal** (`/admin`, Owner and Staff roles)
+- Orders: live updates with sound, search, date range, status tabs, cancel (restocks automatically),
+  staff notes, printable packing slip, CSV export, one switch to pause online orders
+- Time slots: generate delivery/pickup windows in bulk, capacity per window, live booking counts
+- Products & stock: search/filters (low stock, sold out, on sale, hidden), inline stock +/−, sizes, tags
+- Categories (order, visibility, image), coupons (percent / fixed / free delivery, limits, validity),
+  customers with lifetime stats, review moderation, team accounts
+- Analytics: 7/30/90-day revenue vs previous period, peak hours, weekdays, delivery vs pickup,
+  top products, coupon usage, low-stock list
+- Settings: delivery fee, free-delivery threshold, minimum order, delivery/pickup on/off, shop banner
+
+## Quick start
 
 ```bash
 npm install
-cp .env.example .env.local   # then fill in what you have
-npm run dev
+cp .env.example .env     # fill in DATABASE_URL, JWT_SECRET, admin login, SMTP …
+npm run db:migrate       # creates/updates all tables (safe to re-run)
+npm run db:seed          # optional: demo catalog, only if the catalog is empty
+npm run dev              # http://localhost:3000  ·  admin: /admin
 ```
 
-Everything works without keys: products come from `src/lib/catalog.ts`, orders are written to
-`data/orders.json`, emails go to a throwaway Ethereal inbox (the preview link is printed in the terminal)
-and products show illustrated tiles instead of photos.
+Checks: `npm run typecheck`, `npm run lint`, `npm run knip` and `npm run test:unit` (no database needed) run on GitHub
+for every push. Tests (Playwright): `npm run test:e2e` — set `E2E_PORT=3100` if another app already uses port 3000.
+The e2e tests write to the database in `.env` (they create and delete products), so point it at a test database first.
 
-## Connect the services
+How it fits together, who may do what, and the security and data rules: **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)**.
 
-| Service | Keys in `.env.local` | Then run |
-| --- | --- | --- |
-| Neon (database) | `DATABASE_URL` | `npm run db:setup` creates the tables and loads the catalogue |
-| SMTP, e.g. Brevo (email) | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`, `STORE_EMAIL` | restart the dev server |
-| Cloudinary (photos) | `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` | put photos in `product-photos/<product id>.jpg`, then `npm run images:upload` |
-
-After changing prices or products in Neon, refresh the cached catalogue:
-
-```bash
-curl -X POST http://localhost:3000/api/revalidate -H "Authorization: Bearer $REVALIDATE_SECRET"
-```
-
-## Where things live
-
-- `src/lib/i18n.ts`: all interface text in German, English and Somali
-- `src/lib/catalog.ts`: seed products, categories and stores (names in all three languages)
-- `src/lib/schema.sql`: database tables
-- `src/app/api/orders`: checkout, validation and confirmation emails
-- `src/app/globals.css`: colours and the woven-mat patterns
-
-## Photos
-
-Bundled photos in `public/photos` come from [Unsplash](https://unsplash.com/license) (free for commercial use, no attribution required).
-The hero and woven-mat photos show a Somali culture fair ("Dhaqan Goob").
-Replace them with your own shop photography when you have it: keep the file names, or change the paths in `src/lib/catalog.ts`.
-
-## The app
-
-The site is also an installable app (a PWA), built from the same code:
-
-- **Android (Chrome):** open the site, then menu > "App installieren" / "Install app".
-- **iPhone (Safari):** Share > "Zum Home-Bildschirm" / "Add to Home Screen".
-
-It opens full screen with the Dalab Fresh icon, uses the phone layout with the bottom menu, and starts
-even without internet (the last shop page is cached by `public/sw.js`). Installing needs HTTPS, so it works
-once the site is deployed (and on `localhost` for testing). The service worker only runs in production builds.
-
-Files: `src/app/manifest.ts` (name, colours, icons, shortcuts), `public/icons/` (home-screen icons),
-`public/sw.js` (offline cache), `src/components/service-worker.tsx` (registration).
+See **[SETUP.md](SETUP.md)** for configuration, email, admin accounts and deployment.

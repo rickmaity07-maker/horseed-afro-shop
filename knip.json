@@ -1,0 +1,10 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "scripts/*.mjs",
+    "tests/**/*.ts"
+  ],
+  "ignoreDependencies": [
+    "eslint-config-next"
+  ]
+}
