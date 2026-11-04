@@ -1,20 +1,20 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { PLACEHOLDER_IMAGE, sizedImage } from "@/lib/images";
 
-const STORED = "https://res.cloudinary.com/a2x0mlwu/image/upload/f_auto,q_auto/v1792521535/almadina/products/durra.webp";
+const STORED = "https://res.cloudinary.com/demo-cloud/image/upload/f_auto,q_auto/v1792521535/horseed/products/durra.webp";
 
 describe("sizedImage", () => {
   beforeEach(() => {
-    vi.stubEnv("NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME", "a2x0mlwu");
+    vi.stubEnv("NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME", "demo-cloud");
   });
 
   it("serves our Cloudinary photos through the own-domain /img proxy, resized", () => {
-    expect(sizedImage(STORED, 600)).toBe("/img/f_auto,q_auto,c_limit,w_600/v1792521535/almadina/products/durra.webp");
+    expect(sizedImage(STORED, 600)).toBe("/img/f_auto,q_auto,c_limit,w_600/v1792521535/horseed/products/durra.webp");
   });
 
   it("works for stored URLs without a transformation", () => {
-    expect(sizedImage("https://res.cloudinary.com/a2x0mlwu/image/upload/v1/almadina/products/x.webp", 200)).toBe(
-      "/img/f_auto,q_auto,c_limit,w_200/v1/almadina/products/x.webp"
+    expect(sizedImage("https://res.cloudinary.com/demo-cloud/image/upload/v1/horseed/products/x.webp", 200)).toBe(
+      "/img/f_auto,q_auto,c_limit,w_200/v1/horseed/products/x.webp"
     );
   });
 

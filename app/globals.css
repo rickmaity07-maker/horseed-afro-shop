@@ -381,5 +381,5 @@ footer{background:var(--espresso);animation:none}
 @layer base{a{text-decoration:none;color:inherit}}
 /* Admin headings in the shop's display face instead of the browser serif. */
 .font-serif{font-family:var(--font-display)}
-/* Hero glow in the sign's sun colour instead of Al-Madina's green. */
+/* Hero glow in the sign's sun colour instead of the original green. */
 .hero:before{background:radial-gradient(circle,rgba(226,112,46,.10),transparent 68%)}
