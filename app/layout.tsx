@@ -7,7 +7,7 @@ import { CookieNotice } from "./components/CookieNotice";
 import { STORE, openingHoursSpecification } from "@/lib/store-info";
 
 // The sign's heavy geometric capitals; self-hosted by Next.js, so no request goes to Google.
-const montserrat = Montserrat({ subsets: ["latin", "latin-ext"], weight: ["400", "500", "600", "700", "800"], variable: "--font-montserrat", display: "swap" });
+const montserrat = Montserrat({ subsets: ["latin", "latin-ext"], variable: "--font-montserrat", display: "swap" });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 

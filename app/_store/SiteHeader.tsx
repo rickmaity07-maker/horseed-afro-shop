@@ -22,7 +22,7 @@ type Props = {
 
 const SECTION_LINKS: [string, string, string][] = [
   ["#shop", "Shop", "Shop"],
-  ["#fresh", "Kosmetik", "Cosmetics"],
+  ["#kosmetik", "Kosmetik", "Cosmetics"],
   ["#story", "Unsere Geschichte", "Our story"],
   ["#visit", "Besuchen Sie uns", "Visit us"],
 ];

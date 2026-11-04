@@ -7,14 +7,26 @@ import { MAP_URL, PHONE, PHONE_LINK } from "./ui";
 
 type OpenState = ReturnType<typeof storeOpenState> | null;
 
+/** "öffnet um 09:00 Uhr" / "opens Tuesday 09:00", in the visitor's language. */
+function opensText(o: NonNullable<OpenState>, t: Translate) {
+  const n = o.nextOpenAt;
+  if (!n) return "";
+  if (n.today) return t(`öffnet um ${n.time} Uhr`, `opens at ${n.time}`);
+  const day = OPENING_HOURS.find((h) => h.day === n.weekday);
+  return t(`öffnet ${day?.de ?? ""} um ${n.time} Uhr`, `opens ${day?.en ?? ""} at ${n.time}`);
+}
+
 function OpenBadge({ openState, long, t }: { openState: NonNullable<OpenState>; long: boolean; t: Translate }) {
+  const closed = openState.holiday
+    ? t(`Heute geschlossen (${openState.holiday.de})`, `Closed today (${openState.holiday.en})`)
+    : t("Geschlossen", "Closed");
   const label = long
     ? openState.open
-      ? t(`Jetzt geöffnet · bis ${openState.closesAt} Uhr`, `Open now · until ${openState.closesAt}`)
-      : t(`Geschlossen · öffnet ${openState.nextOpen ?? ""}`, `Closed · opens ${openState.nextOpen ?? ""}`)
+      ? t(`Jetzt geöffnet bis ${openState.closesAt} Uhr`, `Open now until ${openState.closesAt}`)
+      : `${closed}, ${opensText(openState, t)}`
     : openState.open
       ? t("Jetzt geöffnet", "Open now")
-      : t("Geschlossen", "Closed");
+      : closed;
   return (
     <span className={openState.open ? "open-badge open" : "open-badge"}>
       <i />
@@ -103,7 +115,7 @@ export function Hero({ openState, t }: { openState: OpenState; t: Translate }) {
 
 export function FreshBand({ t }: { t: Translate }) {
   return (
-    <section id="fresh" className="feature-band reveal">
+    <section id="kosmetik" className="feature-band reveal">
       <div className="mx-auto grid max-w-7xl gap-8 px-5 py-16 lg:grid-cols-2 lg:px-8 lg:py-20">
         <div>
           <span className="eyebrow light">{t("Kosmetik & Parfum", "Cosmetics & perfume")}</span>
@@ -123,7 +135,7 @@ export function FreshBand({ t }: { t: Translate }) {
           </a>
         </div>
         <div className="feature-photo">
-          <img src="/images/somali/uunsi.jpg" alt={t("Uunsi-Räucherwerk", "Uunsi incense")} />
+          <img loading="lazy" src="/images/somali/uunsi.jpg" alt={t("Uunsi-Räucherwerk", "Uunsi incense")} />
           <div>
             <b>{t("Uunsi & Bakhoor", "Uunsi & bakhoor")}</b>
             <span>{t("Für Zuhause und Feste", "For the home and celebrations")}</span>
@@ -138,7 +150,7 @@ export function Story({ t }: { t: Translate }) {
   return (
     <section id="story" className="story reveal mx-auto grid max-w-7xl gap-12 px-5 py-20 lg:grid-cols-[.9fr_1.1fr] lg:px-8">
       <div className="story-photo">
-        <img src="/images/horseed-shopfront.jpg" alt={t("Schaufenster von Horseed Afro Shop mit Öffnungszeiten und Parfumregal", "Horseed Afro Shop window with opening hours and a perfume wall")} />
+        <img loading="lazy" src="/images/horseed-shopfront.jpg" alt={t("Schaufenster von Horseed Afro Shop mit Öffnungszeiten und Parfumregal", "Horseed Afro Shop window with opening hours and a perfume wall")} />
       </div>
       <div className="story-copy">
         <span className="eyebrow">{t("Über uns", "About us")}</span>
