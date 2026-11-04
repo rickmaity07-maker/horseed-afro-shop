@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
+import { STORE } from "@/lib/store-info";
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -34,11 +35,13 @@ export default function DatenschutzPage() {
 
         <Section title={t("1. Verantwortlicher", "1. Data controller")}>
           <p>
-            [{t("PLATZHALTER — vollständiger rechtlicher Name", "PLACEHOLDER — full legal name")}]
+            {STORE.owner} ({t("Inhaber", "owner")})
             <br />
-            Horseed Afro Shop, Schultesstraße 4, 97421 Schweinfurt, {t("Deutschland", "Germany")}
+            {STORE.name}, {STORE.street}, {STORE.postalCode} {STORE.city}, {t("Deutschland", "Germany")}
             <br />
-            {t("Telefon", "Phone")}: +49 163 8707437 · E-Mail: [{t("PLATZHALTER", "PLACEHOLDER")}]
+            {t("Telefon", "Phone")}: {STORE.phoneDisplay}
+            <br />
+            {t("E-Mail", "Email")}: [{t("PLATZHALTER", "PLACEHOLDER")}]
           </p>
         </Section>
 
@@ -140,8 +143,8 @@ export default function DatenschutzPage() {
             </li>
             <li>
               {t(
-                "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland (Gmail) — Versand von Bestätigungs-, Status- und Bestellbenachrichtigungs-E-Mails.",
-                "Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland (Gmail) — sending confirmation, status and order notification emails."
+                "Sendinblue SAS (Brevo), 106 boulevard Haussmann, 75008 Paris, Frankreich: Versand von Bestätigungs-, Status- und Bestellbenachrichtigungs-E-Mails. Die Daten werden in der EU verarbeitet.",
+                "Sendinblue SAS (Brevo), 106 boulevard Haussmann, 75008 Paris, France: sending confirmation, status and order notification emails. The data is processed in the EU."
               )}
             </li>
           </ul>
