@@ -9,7 +9,7 @@ function cloudinaryPrefix(): string | null {
 const IMAGE_WIDTHS = [160, 200, 240, 600, 900, 1200, 2000] as const;
 type ImageWidth = (typeof IMAGE_WIDTHS)[number];
 
-const IMG_PATH = new RegExp(`^/img/f_auto,q_auto,c_limit,w_(${IMAGE_WIDTHS.join("|")})/[A-Za-z0-9_\-./]+$`);
+const IMG_PATH = new RegExp(`^/img/f_auto,q_auto,c_limit,w_(${IMAGE_WIDTHS.join("|")})/[A-Za-z0-9_./-]+$`);
 
 /** True for /img paths the site itself generates; no "..", no extra transformations. */
 export function isAllowedImagePath(pathname: string): boolean {

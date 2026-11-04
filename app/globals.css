@@ -383,3 +383,11 @@ footer{background:var(--espresso);animation:none}
 .font-serif{font-family:var(--font-display)}
 /* Hero glow in the sign's sun colour instead of the original green. */
 .hero:before{background:radial-gradient(circle,rgba(226,112,46,.10),transparent 68%)}
+
+/* Price per kg / litre, deposit and "incl. VAT" under a price. */
+.price-notes{display:block;font-size:12px;color:#5f6762;margin-top:2px;font-weight:400}
+
+/* Skip link: hidden until it gets keyboard focus. */
+.skip-link{position:absolute;left:12px;top:-60px;z-index:1000;padding:10px 16px;border-radius:8px;background:#2a1913;color:#fff;font-weight:700;text-decoration:none}
+.skip-link:focus-visible{top:12px;outline:3px solid #f2b33d;outline-offset:2px}
+main:focus{outline:none}
