@@ -7,14 +7,14 @@ function randomHex(bytes: number): string {
   return Array.from(buf, (b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-/** Human-friendly order number, e.g. AM-20260905-4F2K */
+/** Human-friendly order number, e.g. HS-20260905-4F2K */
 export function generateOrderNumber() {
   const date = new Date();
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, "0");
   const d = String(date.getDate()).padStart(2, "0");
   const suffix = randomHex(3).toUpperCase();
-  return `AM-${y}${m}${d}-${suffix}`;
+  return `HS-${y}${m}${d}-${suffix}`;
 }
 
 /** Opaque, unguessable token used in the delivery-person link for one order. */

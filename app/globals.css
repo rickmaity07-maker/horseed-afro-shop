@@ -370,3 +370,9 @@ footer{background:var(--espresso);animation:none}
 
 /* Sign-style label: dark band with sand capitals, used for section stamps. */
 .sign-band{display:inline-block;background:var(--espresso);color:var(--sand);font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:.35em .7em;border-radius:6px}
+/* Tap targets: at least 24px high (WCAG 2.2 target size). */
+.nav-links a{display:inline-flex;align-items:center;min-height:32px}
+.hero-card a{min-height:28px}
+/* Horseed photos are full scenes, not cut-outs: fill the frame on sand instead of padding on white. */
+.product-image{background:var(--sand-soft)}
+.product-image img{object-fit:cover;padding:0}
