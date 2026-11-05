@@ -200,10 +200,16 @@ Runs on any Node.js host (VPS, Railway, Render) or Vercel. Notes:
   per request is set in `middleware.ts`; the other headers (HSTS, frame, sniffing)
   in `next.config.ts`. API writes from another website are refused (Origin check).
 - Set `NEXT_PUBLIC_SITE_URL` so emails, `sitemap.xml` and `robots.txt` point at
-  the real domain.
-- **Vercel does not run migrations.** After a deploy that adds files to `db/migrations/`,
+  the real domain. **Required in production:** password-reset and account emails
+  only link to this address (never to the request's Host header, which can be
+  forged), so without it those emails are not sent.
+- **Vercel does not run migrations.** Before a deploy that adds files to `db/migrations/`,
   run `npm run db:migrate` once with `DATABASE_URL` set to the live database (re-running is safe).
   It also fills in net quantities from size labels ("500 g"), which the price per kg/l needs.
+  Migration `010_google_accounts_backfill.sql` marks existing "Sign in with Google" accounts
+  as having no password, so "Delete account" asks for their email instead.
+- Health check for an uptime monitor: `GET /api/health` answers 200 when the
+  database responds and 503 when it doesn't.
 - Product photos need the three `CLOUDINARY_*` variables in Vercel (then redeploy): without them the
   admin can't upload photos and products show the placeholder.
 
